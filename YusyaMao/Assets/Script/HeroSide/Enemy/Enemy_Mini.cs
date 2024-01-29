@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Enemy_Move : MonoBehaviour
+public class Enemy_Mini : MonoBehaviour
 {
     [Header("HP")]
     public float HP;
@@ -37,7 +37,7 @@ public class Enemy_Move : MonoBehaviour
     private Vector2 MovePosition;
 
     //‰æ‘œ•ÏX
-    private Image image;
+    //private Image image;
 
     private void Start()
     {
@@ -46,29 +46,29 @@ public class Enemy_Move : MonoBehaviour
 
         transform.position = StartPosition;
 
-        //‰æ‘œ‚Ìw’è
-        image = GetComponent<Image>();
-        if (image != null)
-        {
-            switch (EnemyType)
-            {
-                case Enemy_Type.Type1:
-                    image.sprite = Enemy1;
-                    break;
-                case Enemy_Type.Type2:
-                    image.sprite = Enemy2;
-                    break;
-                case Enemy_Type.Type3:
-                    image.sprite = Enemy3;
-                    break;
-            }
-        }
+        ////‰æ‘œ‚Ìw’è
+        //image = GetComponent<Image>();
+        //if (image != null)
+        //{
+        //    switch (EnemyType)
+        //    {
+        //        case Enemy_Type.Type1:
+        //            image.sprite = Enemy1;
+        //            break;
+        //        case Enemy_Type.Type2:
+        //            image.sprite = Enemy2;
+        //            break;
+        //        case Enemy_Type.Type3:
+        //            image.sprite = Enemy3;
+        //            break;
+        //    }
+        //}
 
     }
 
     private void Update()
     {
-        if (HP >= 0)
+        if (HP <= 0)
         {
             Destroy(gameObject);
         }
@@ -76,6 +76,12 @@ public class Enemy_Move : MonoBehaviour
         // ˆÚ“®
         transform.position = Vector2.MoveTowards(
             transform.position, MovePosition, Speed * Time.deltaTime);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        MovePosition = transform.position;
+        Debug.Log("atatta");
     }
 
     void SetStart(Vector2 pos, Enemy_Type Type, float EnemyPower)
