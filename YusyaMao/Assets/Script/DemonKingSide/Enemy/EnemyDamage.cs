@@ -12,6 +12,7 @@ public class EnemyDamage : MonoBehaviour
     private PlayerData playerData;
 
     private int HP;
+    private string keyName;
     private KeyCode keyCode;
 
 
@@ -25,8 +26,9 @@ public class EnemyDamage : MonoBehaviour
         else
         {
             HP = enemyData.MaxHP;
+            keyName = enemyData.KeyNames[UnityEngine.Random.Range(0, enemyData.KeyNames.Length)];
             Debug.Log(enemyData.name + "HP：" + HP);
-            Debug.Log(enemyData.name + "キー："+enemyData.KeyName);
+            Debug.Log(enemyData.name + "キー：" + keyName);
         }
 
         if (playerData == null)
@@ -45,7 +47,7 @@ public class EnemyDamage : MonoBehaviour
         KeyCodeGet();
 
         //マウスが敵の上にあって、クリックされたときにHPを減らす
-        if (enemyData.KeyName == "Click")
+        if (keyName == "Click")
         {
             if (Input.GetMouseButtonDown(0) && IsMouseOver())
             {
@@ -55,8 +57,6 @@ public class EnemyDamage : MonoBehaviour
         }
         else
         {
-            
-
             Debug.Log("KeyCode" + keyCode);
 
             if (Input.GetKeyDown(keyCode) && IsMouseOver())
@@ -91,13 +91,13 @@ public class EnemyDamage : MonoBehaviour
 
     private void KeyCodeGet()
     {
-        if (enemyData.KeyName == "Click")
+        if (keyName == "Click")
         {
             return;
         }
         else
         {
-            keyCode = (KeyCode)System.Enum.Parse(typeof(KeyCode), enemyData.KeyName);
+            keyCode = (KeyCode)System.Enum.Parse(typeof(KeyCode), keyName);
         }
        
     }

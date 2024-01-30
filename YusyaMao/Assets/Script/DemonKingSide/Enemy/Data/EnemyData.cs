@@ -12,13 +12,9 @@ public class EnemyData : ScriptableObject
     [SerializeField]
     private string[] keyNames;
 
-    private string keyName;
-
     public int MaxHP { get { return maxHP; } }
 
-    int index;
+    public string[] KeyNames {  get { return keyNames; } }
 
-    public string KeyName 
-    { get { return keyName=keyNames[index = UnityEngine.Random.Range(0, keyNames.Length)]; } }
 
 }
