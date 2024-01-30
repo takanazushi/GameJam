@@ -9,6 +9,9 @@ public class PlayerData : ScriptableObject
     [SerializeField]
     private int attackRange = 1;
 
+    [SerializeField]
+    private bool canUseSKill = true;
+
     public int ArrackPower 
     {   get { return attackPower; }
 
@@ -19,5 +22,11 @@ public class PlayerData : ScriptableObject
     {
         get { return attackRange; }
         set { attackRange = value; }
+    }
+
+    public bool CanUseSKill
+    {
+        get { return canUseSKill; }
+        set { canUseSKill = value; }
     }
 }

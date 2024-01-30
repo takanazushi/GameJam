@@ -47,6 +47,7 @@ public class PowerUp : MonoBehaviour
                     break;
 
                 case PortionData.PotionEffect.BigSkillRecovery:
+                    playerData.CanUseSKill = true;
                     Debug.Log("•KE‹Z‚ğg‚¦‚é‚æ‚¤‚É‚µ‚½‚¼I");
                     gameObject.SetActive(false);
                     break;
