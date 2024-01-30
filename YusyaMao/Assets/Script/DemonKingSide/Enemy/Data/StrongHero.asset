@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: StrongHero
   maxHP: 20
+  keyNames:
+  - D
+  - W

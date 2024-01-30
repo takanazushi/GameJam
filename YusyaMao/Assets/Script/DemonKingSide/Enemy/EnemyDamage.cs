@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static System.Runtime.CompilerServices.RuntimeHelpers;
 
 public class EnemyDamage : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class EnemyDamage : MonoBehaviour
     private PlayerData playerData;
 
     private int HP;
+    private KeyCode keyCode;
+
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +26,7 @@ public class EnemyDamage : MonoBehaviour
         {
             HP = enemyData.MaxHP;
             Debug.Log(enemyData.name + "HP：" + HP);
+            Debug.Log(enemyData.name + "キー："+enemyData.KeyName);
         }
 
         if (playerData == null)
@@ -38,12 +42,30 @@ public class EnemyDamage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        KeyCodeGet();
+
         //マウスが敵の上にあって、クリックされたときにHPを減らす
-        if (Input.GetMouseButtonDown(0) && IsMouseOver())
+        if (enemyData.KeyName == "Click")
         {
-            HP -= playerData.ArrackPower;
-            Debug.Log(enemyData.name + "HP：" + HP);
+            if (Input.GetMouseButtonDown(0) && IsMouseOver())
+            {
+                HP -= playerData.ArrackPower;
+                Debug.Log(enemyData.name + "HP：" + HP);
+            }
         }
+        else
+        {
+            
+
+            Debug.Log("KeyCode" + keyCode);
+
+            if (Input.GetKeyDown(keyCode) && IsMouseOver())
+            {
+                HP -= playerData.ArrackPower;
+                Debug.Log(enemyData.name + "HP：" + HP);
+            }
+        }
+       
 
         if (HP <= 0)
         {
@@ -65,5 +87,18 @@ public class EnemyDamage : MonoBehaviour
         }
 
         return false;
+    }
+
+    private void KeyCodeGet()
+    {
+        if (enemyData.KeyName == "Click")
+        {
+            return;
+        }
+        else
+        {
+            keyCode = (KeyCode)System.Enum.Parse(typeof(KeyCode), enemyData.KeyName);
+        }
+       
     }
 }
