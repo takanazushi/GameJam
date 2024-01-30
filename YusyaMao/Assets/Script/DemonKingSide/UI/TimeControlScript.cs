@@ -26,7 +26,7 @@ public class TimeControlScript : MonoBehaviour
 
         TextFlame.text = Minutes.ToString("00") + ":" + Seconds.ToString("00");
 
-        Debug.Log(Minutes.ToString("00") + ":" + Seconds.ToString("00"));
+        //Debug.Log(Minutes.ToString("00") + ":" + Seconds.ToString("00"));
     }
 
 }

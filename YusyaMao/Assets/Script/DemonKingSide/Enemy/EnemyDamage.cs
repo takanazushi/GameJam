@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static System.Runtime.CompilerServices.RuntimeHelpers;
 
 public class EnemyDamage : MonoBehaviour
 {
@@ -11,10 +8,14 @@ public class EnemyDamage : MonoBehaviour
     [SerializeField, Header("プレイヤーのデータ")]
     private PlayerData playerData;
 
+    [SerializeField, Header("攻撃範囲")]
+    private GameObject AttackRange;
+
     private int HP;
     private string keyName;
     private KeyCode keyCode;
 
+    private MouseFollow mouseFollow;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +40,15 @@ public class EnemyDamage : MonoBehaviour
         {
             Debug.Log("プレイヤーの攻撃力：" + playerData.ArrackPower);
         }
+
+        if (AttackRange == null)
+        {
+            Debug.LogError("攻撃範囲のところに何も入ってません(>_<)");
+        }
+        else
+        {
+            mouseFollow = AttackRange.GetComponent<MouseFollow>();
+        }
     }
 
     // Update is called once per frame
@@ -47,22 +57,27 @@ public class EnemyDamage : MonoBehaviour
         KeyCodeGet();
 
         //マウスが敵の上にあって、クリックされたときにHPを減らす
-        if (keyName == "Click")
+        if (mouseFollow.HitEnemy)
         {
-            if (Input.GetMouseButtonDown(0) && IsMouseOver())
-            {
-                HP -= playerData.ArrackPower;
-                Debug.Log(enemyData.name + "HP：" + HP);
-            }
-        }
-        else
-        {
-            Debug.Log("KeyCode" + keyCode);
+            Debug.Log("攻撃範囲内");
 
-            if (Input.GetKeyDown(keyCode) && IsMouseOver())
+            if (keyName == "Click")
             {
-                HP -= playerData.ArrackPower;
-                Debug.Log(enemyData.name + "HP：" + HP);
+                if (Input.GetMouseButtonDown(0))
+                {
+                    HP -= playerData.ArrackPower;
+                    Debug.Log(enemyData.name + "HP：" + HP);
+                }
+            }
+            else
+            {
+                Debug.Log("KeyCode" + keyCode);
+
+                if (Input.GetKeyDown(keyCode))
+                {
+                    HP -= playerData.ArrackPower;
+                    Debug.Log(enemyData.name + "HP：" + HP);
+                }
             }
         }
        
@@ -74,20 +89,21 @@ public class EnemyDamage : MonoBehaviour
         }
     }
 
-    bool IsMouseOver()
-    {
-        //マウスの位置からRayを飛ばす
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
+    //bool IsMouseOver()
+    //{
+    //    //マウスの位置からRayを飛ばす
+    //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+    //    RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
 
-        //Rayが敵に当たったらTrueを返す
-        if (hit.collider != null && hit.collider.gameObject == this.gameObject)
-        {
-            return true;
-        }
+    //    //Rayが敵に当たったらTrueを返す
+    //    if (hit.collider != null && hit.collider.gameObject == this.gameObject)
+    //    {
+    //        Debug.Log("マウスカーソルが当たってます！");
+    //        return true;
+    //    }
 
-        return false;
-    }
+    //    return false;
+    //}
 
     private void KeyCodeGet()
     {
@@ -101,4 +117,6 @@ public class EnemyDamage : MonoBehaviour
         }
        
     }
+
+    
 }
