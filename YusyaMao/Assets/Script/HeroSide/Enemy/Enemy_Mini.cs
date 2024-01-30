@@ -46,23 +46,6 @@ public class Enemy_Mini : MonoBehaviour
 
         transform.position = StartPosition;
 
-        ////‰æ‘œ‚ÌŽw’è
-        //image = GetComponent<Image>();
-        //if (image != null)
-        //{
-        //    switch (EnemyType)
-        //    {
-        //        case Enemy_Type.Type1:
-        //            image.sprite = Enemy1;
-        //            break;
-        //        case Enemy_Type.Type2:
-        //            image.sprite = Enemy2;
-        //            break;
-        //        case Enemy_Type.Type3:
-        //            image.sprite = Enemy3;
-        //            break;
-        //    }
-        //}
 
     }
 
@@ -70,7 +53,7 @@ public class Enemy_Mini : MonoBehaviour
     {
         if (HP <= 0)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
 
         // ˆÚ“®
@@ -78,11 +61,11 @@ public class Enemy_Mini : MonoBehaviour
             transform.position, MovePosition, Speed * Time.deltaTime);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        MovePosition = transform.position;
-        Debug.Log("atatta");
-    }
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    MovePosition = transform.position;
+    //    Debug.Log("atatta");
+    //}
 
     void SetStart(Vector2 pos, Enemy_Type Type, float EnemyPower)
     {

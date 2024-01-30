@@ -355,7 +355,7 @@ GameObject:
   - component: {fileID: 1100943509}
   - component: {fileID: 1100943508}
   m_Layer: 0
-  m_Name: DragonMini
+  m_Name: Dragon_Maneger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -373,6 +373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daf02fa43a778aa47a73cf781ccde45a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CreateBoss: 0
   EnemyMini: {fileID: 8086289254016921980, guid: 361b3eba58089204ba6e1844e47b6052, type: 3}
   Menber: 2
   RespawnTime: 2

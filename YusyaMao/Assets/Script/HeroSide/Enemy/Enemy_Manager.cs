@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Enemy_Manager : MonoBehaviour
 {
+    [Header("ボス出現")]
+    public bool CreateBoss;
+
     [Header("雑魚のプレハブ")]
     public GameObject EnemyMini;
 
