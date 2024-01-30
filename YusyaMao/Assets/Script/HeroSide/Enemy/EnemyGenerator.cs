@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyGenerator : MonoBehaviour
 {
     //敵スクリプトに変更
-    GameObject[] Enemy_pool;
+    Enemy_Mini[] Enemy_pool;
 
     /// <summary>
     /// クールタイム
@@ -27,12 +28,12 @@ public class EnemyGenerator : MonoBehaviour
     private void Start()
     {
         int enemypool_conut=transform.childCount;
-        Enemy_pool = new GameObject[enemypool_conut];
+        Enemy_pool = new Enemy_Mini[enemypool_conut];
 
         for (int i = 0; i < enemypool_conut; i++)
         {
             //敵スクリプトを取得
-            Enemy_pool[i] = transform.GetChild(i).gameObject;
+            Enemy_pool[i] = transform.GetChild(i).GetComponent<Enemy_Mini>();
         }
         exeTime = GameManager.Instance.GetTime_limit- ExeCoolTime;
     }
@@ -51,10 +52,11 @@ public class EnemyGenerator : MonoBehaviour
             {
                 foreach (var enemy in Enemy_pool)
                 {
-                    if (!enemy.activeSelf)
+                    if (!enemy.gameObject.activeSelf)
                     {
                         //敵スクリプトの初期化処理を実行
-                        enemy.SetActive(true);
+                        enemy.gameObject.SetActive(true);
+                        enemy.SetStart();
                         break;
                     }
                 }
@@ -67,7 +69,7 @@ public class EnemyGenerator : MonoBehaviour
         {
             foreach (var enemy in Enemy_pool)
             {
-                enemy.SetActive(false);
+                enemy.gameObject.SetActive(false);
             }
         }
     }
