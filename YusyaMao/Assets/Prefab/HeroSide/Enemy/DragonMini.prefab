@@ -172,9 +172,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0156e0dac0c900e48b215d63f73d5e68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 100
+  HP: 1
   Speed: 3
   Position: {x: 0, y: 0}
+  Enemy_No: 0
   EnemyType: 0
   Power: 1
   Enemy1: {fileID: 21300000, guid: 3687875b4b3f9cd4083a5bafa25f5e08, type: 3}

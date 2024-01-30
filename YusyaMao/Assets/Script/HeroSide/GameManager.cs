@@ -20,9 +20,14 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 制限時間、秒
+    /// 開始秒数
     /// </summary>
     [SerializeField]
+    float Time_limit_Start;
+
+    /// <summary>
+    /// 制限時間、残り秒数
+    /// </summary>
     float Time_limit;
 
     /// <summary>
@@ -31,10 +36,21 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     bool IsTime_Count;
 
+    /// <summary>
+    /// 残り制限時間取得
+    /// </summary>
     public float GetTime_limit
     {
         get { return Time_limit;}
     }    
+
+    /// <summary>
+    /// 経過時間取得
+    /// </summary>
+    public float Get_ElapsedTime
+    {
+        get { return Time_limit_Start- Time_limit; }
+    }
 
     private void Awake()
     {
@@ -47,6 +63,8 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        Time_limit = Time_limit_Start;
     }
 
     private void FixedUpdate()
