@@ -20,6 +20,23 @@ public class EnemyManeger : MonoBehaviour
     Enemy_Mini[] Enemy_pool;
 
     /// <summary>
+    /// ボスオブジェクト
+    /// </summary>
+    [SerializeField]
+    EnemyBoss Enemy_Boss;
+
+    /// <summary>
+    /// ボス出現時間
+    /// </summary>
+    [SerializeField]
+    float EnemyBoss_Time;
+
+    /// <summary>
+    /// ボス出現させたか
+    /// </summary>
+    bool EnemyBossflg;
+
+    /// <summary>
     /// 敵を生成した数
     /// </summary>
     int Enemy_Count;
@@ -63,6 +80,7 @@ public class EnemyManeger : MonoBehaviour
             Enemy_pool[i] = transform.GetChild(i).GetComponent<Enemy_Mini>();
         }
         exeTime = GameManager.Instance.GetTime_limit- ExeCoolTime;
+        EnemyBossflg = false;
     }
 
 
@@ -84,8 +102,27 @@ public class EnemyManeger : MonoBehaviour
                 }
             }
         }
+
+        //ボス出現時間判定
+        if (!EnemyBossflg&&GameManager.Instance.GetTime_limit < EnemyBoss_Time)
+        {
+            EnemyBoss_Generator();
+        }
+
     }
 
+    void EnemyBoss_Generator()
+    {
+        Enemy_Boss.gameObject.SetActive(true);
+
+        //制限時間カウント停止
+        GameManager.Instance.IsGetTime_flg = false;
+        EnemyBossflg = true;
+    }
+
+    /// <summary>
+    /// 敵生成
+    /// </summary>
     void Enemy_Generator()
     {
         foreach (var enemy in Enemy_pool)

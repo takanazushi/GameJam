@@ -52,8 +52,8 @@ public class Enemy_Mini : MonoBehaviour
 
     private void Start()
     {
-        StartPosition = new Vector2(-11, Random.Range(1.7f, -3.5f));
-        MovePosition = new Vector2(Random.Range(-2.5f, -6f), StartPosition.y);
+        StartPosition = new Vector2(-11, Random.Range(0.0f, -3.7f));
+        MovePosition = new Vector2(Random.Range(0.0f, -6f), StartPosition.y);
 
         transform.position = StartPosition;
 
