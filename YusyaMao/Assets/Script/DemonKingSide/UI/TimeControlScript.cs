@@ -6,31 +6,40 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class TimeControlScript : MonoBehaviour
-{    
-    //変数
+{
+    /// <summary>
+    /// 入力先
+    /// </summary>
+    [Header("入力先テキストボックス")]
     public Text TextFlame;
+
+    /// <summary>
+    /// 分数
+    /// </summary>
     private float Minutes;
+
+    /// <summary>
+    /// 秒数
+    /// </summary>
     private float Seconds;
 
     // Start is called before the first frame update
     void Start()
     {
+        //分数・秒数割り出し
         Seconds = GameManager2.Instance.GetTime_limit % 60;
         Minutes = GameManager2.Instance.GetTime_limit / 60;
-
-        Debug.Log(Seconds);
-        Debug.Log(Minutes);
     }
 
     // Update is called once per frame
     void Update()
     {
+        //分数・秒数割り出し
         Seconds = (int)GameManager2.Instance.GetTime_limit % 60;
         Minutes = (int)GameManager2.Instance.GetTime_limit / 60;
 
+        //文字入力
         TextFlame.text = Minutes.ToString("00") + ":" + Seconds.ToString("00");
-
-        Debug.Log(Minutes.ToString("00") + ":" + Seconds.ToString("00"));
     }
 
 }
