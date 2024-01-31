@@ -121,6 +121,31 @@ public class EnemyManeger : MonoBehaviour
 
     }
 
+    public void Enemy_ColStop()
+    {
+        foreach (var enemy in Enemy_pool)
+        {
+            if (enemy.gameObject.activeSelf)
+            {
+                enemy.AttackStop();
+
+            }
+        }
+    }
+
+    public void Enemy_ColStart()
+    {
+        foreach (var enemy in Enemy_pool)
+        {
+            if (enemy.gameObject.activeSelf)
+            {
+                enemy.AttackReStart();
+
+            }
+
+        }
+    }
+
     /// <summary>
     /// ボス生成
     /// </summary>
@@ -176,6 +201,30 @@ public class EnemyManeger : MonoBehaviour
             }
         }
 
+    }
+
+    /// <summary>
+    /// 敵にダメージ
+    /// </summary>
+    /// <param name="tra">Transformで指定</param>
+    /// <param name="damage">ダメージ</param>
+    public void EnemyDamage(Transform tra, float damage)
+    {
+        foreach (var enemy in Enemy_pool)
+        {
+            if (enemy.transform == tra) 
+            {
+                //攻撃
+                if (enemy.Damage(damage))
+                {
+                    //敵を倒した場合
+                    KnockOutCount++;
+
+                    //playerの攻撃力を更新
+                    playerData.PowerUpdate(playerData.GetAttackPower * 0.5f);
+                }
+            }
+        }
     }
 
     /// <summary>

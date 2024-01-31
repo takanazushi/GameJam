@@ -113,9 +113,36 @@ public class GameManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// ƒŠƒUƒ‹ƒg‚ÉˆÚs
+    /// </summary>
     public void On_Result()
     {
         Resultflg = true;
     }
+
+    /// <summary>
+    /// ƒQ[ƒ€ÄŠJ
+    /// </summary>
+    public void GameStart()
+    {
+        //ƒQ[ƒ€‘€ì‰Â”\
+        Instance.GetGameOperationFlg = true;
+        //ƒQ[ƒ€ŠÔ’â~
+        Instance.IsGetTime_flg = true;
+
+    }
+
+    /// <summary>
+    /// ƒQ[ƒ€ˆê’â~
+    /// </summary>
+    public void GameStop()
+    {
+        //ƒQ[ƒ€‘€ì‰Â”\
+        Instance.GetGameOperationFlg = false;
+        //ƒQ[ƒ€ŠÔ’â~
+        Instance.IsGetTime_flg = false;
+    }
+
 
 }

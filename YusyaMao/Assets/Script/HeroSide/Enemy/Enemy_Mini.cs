@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class Enemy_Mini : MonoBehaviour
@@ -20,6 +21,22 @@ public class Enemy_Mini : MonoBehaviour
     [SerializeField]
     int Enemy_No;
 
+    WaitForSeconds wait;
+
+    IEnumerator Attack_col;
+
+    [SerializeField,Header("“G‚ÌUŒ‚—Í")]
+    public float Power;
+
+    /// <summary>
+    /// UŒ‚ƒŠƒLƒƒƒXƒg
+    /// </summary>
+    [SerializeField]
+    float Attack_ReTime;
+
+    /// <summary>
+    /// playerƒXƒNƒŠƒvƒg
+    /// </summary>
     [SerializeField]
     PlayerData playerData;
 
@@ -38,8 +55,6 @@ public class Enemy_Mini : MonoBehaviour
     [Header("“G‚Ìí—Ş")]
     public Enemy_Type EnemyType;
 
-    [Header("“G‚Ì‹­‚³")]
-    public float Power;
 
     [Header("“G‚Ì‰æ‘œ")]
     public Sprite Enemy1;
@@ -58,6 +73,12 @@ public class Enemy_Mini : MonoBehaviour
         MovePosition = new Vector2(Random.Range(0.0f, -6f), StartPosition.y);
 
         transform.position = StartPosition;
+
+        wait = new(Attack_ReTime);
+
+        Attack_col = Attackcol();
+
+        StartCoroutine(Attack_col);
     }
 
     private void Update()
@@ -71,8 +92,27 @@ public class Enemy_Mini : MonoBehaviour
         // ˆÚ“®
         transform.position = Vector2.MoveTowards(
             transform.position, MovePosition, speed);
+    }
 
-        playerData.Damage(10);
+    public void AttackStop()
+    {
+        StopCoroutine(Attack_col);
+    }
+
+    public void AttackReStart()
+    {
+        StartCoroutine(Attack_col);
+    }
+
+    IEnumerator Attackcol()
+    {
+        yield return wait;
+        Debug.Log("“GUŒ‚");
+        playerData.Damage(Power);
+
+
+        Attack_col = Attackcol();
+        StartCoroutine(Attack_col);
     }
 
     /// <summary>
@@ -92,12 +132,6 @@ public class Enemy_Mini : MonoBehaviour
 
         return false;
     }
-
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    MovePosition = transform.position;
-    //    Debug.Log("atatta");
-    //}
 
     /// <summary>
     /// “G‚ğ¶¬

@@ -11,12 +11,11 @@ GameObject:
   - component: {fileID: 5020221268442954811}
   - component: {fileID: 379628865730826484}
   - component: {fileID: 2072080752372652713}
-  - component: {fileID: 3211367383577799907}
   - component: {fileID: 3940222076537151248}
   - component: {fileID: 6655677696473395084}
   m_Layer: 0
   m_Name: DragonMini
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -117,7 +116,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -133,33 +132,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.44, y: 1.68}
   m_EdgeRadius: 0
---- !u!50 &3211367383577799907
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8086289254016921980}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
 --- !u!114 &3940222076537151248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,8 +148,10 @@ MonoBehaviour:
   Speed: 3
   Position: {x: 0, y: 0}
   Enemy_No: 0
+  Power: 2
+  Attack_ReTime: 2
+  playerData: {fileID: 0}
   EnemyType: 0
-  Power: 1
   Enemy1: {fileID: 21300000, guid: 52efabfb7823c9543928b2ac88962f92, type: 3}
   Enemy2: {fileID: 21300000, guid: 00ce27eb47e375e4aad8f30ccfdf38e2, type: 3}
   Enemy3: {fileID: 21300000, guid: ed6f6ed579cb70d4882043a58172f8f4, type: 3}

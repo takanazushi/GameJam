@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class PlayerData : MonoBehaviour
@@ -25,6 +26,9 @@ public class PlayerData : MonoBehaviour
     [SerializeField]
     float Hp;
 
+    [SerializeField]
+    TextMeshProUGUI textmeshPro;
+
     public float GetAttackPower
     {
         get { return AttackPower; }
@@ -42,40 +46,80 @@ public class PlayerData : MonoBehaviour
 
         }
 
-
+        textmeshPro.text = Hp.ToString() + ":HP";
     }
 
     // Update is called once per frame
     void Update()
     {
         //敵に攻撃実行
-        if (GameManager.Instance.GetGameOperationFlg &&
-            GameManager.Instance.IsGetTime_flg &&
-            Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) &&
+            GameManager.Instance.GetGameOperationFlg &&
+            GameManager.Instance.IsGetTime_flg)
         {
-            EnemyManeger.EnemyDamage(AttackPower);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
 
-            //武器モーション開始
-            foreach (var weapon in weapon_pool)
+            if (hit)
             {
-                weapon.MoveStart();
+                if (hit.collider.CompareTag("Enemy"))
+                {
+
+                    EnemyManeger.EnemyDamage(hit.transform, AttackPower);
+
+                    //武器モーション開始
+                    foreach (var weapon in weapon_pool)
+                    {
+                        weapon.MoveStart(hit.transform.position);
+                    }
+
+                }
             }
         }
+    }
+
+    /// <summary>
+    /// 攻撃が実行できるか判定
+    /// </summary>
+    /// <returns></returns>
+    bool IsAttack()
+    {
+        bool flg = false;
+
+        if (Input.GetMouseButtonDown(0) &&
+            GameManager.Instance.GetGameOperationFlg &&
+            GameManager.Instance.IsGetTime_flg)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
+
+            if (hit)
+            {
+                if (hit.collider.CompareTag("Enemy"))
+                {
+                    flg = true;
+                }
+            }
+
+        }
+
+        return flg;
     }
 
     public void PowerUpdate(float addpower)
     {
         AttackPower += addpower;
-        Debug.Log("uppo:" + AttackPower);
     }
 
     public void Damage(float damgae)
     {
         Hp -= damgae;
 
-        if (Hp<=0)
+        if (Hp <= 0)
         {
             Hp = 0;
         }
+
+        textmeshPro.text = Hp.ToString() + ":HP";
     }
 }

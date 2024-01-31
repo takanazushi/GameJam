@@ -104,6 +104,25 @@ public class Weapon_Move : MonoBehaviour
         }
     }
 
+    public void MoveStart(Vector3 pos)
+    {
+            //クリック位置から一番近いオブジェクトに移動
+            MovePosition = pos;
+
+        
+
+
+            if (!MoveStartFlg && !CoolDownFlg)
+            {
+                MoveStartFlg = true;
+            }
+
+        
+
+
+    }
+
+
     public void MoveStart()
     {
         bool flg = true;

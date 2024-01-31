@@ -3,12 +3,19 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class GoMenu : MonoBehaviour
 {
     public GameObject PauseBack;
     private bool Active = false;
+
+    [SerializeField]
+    UnityEvent StopEvent;
+    [SerializeField]
+    UnityEvent StartEvent;
+
 
     private void Update()
     {
@@ -17,15 +24,22 @@ public class GoMenu : MonoBehaviour
 
     public void OnButton()
     {
-        //ƒQ[ƒ€‘€ì‰Â”\
-        GameManager.Instance.GetGameOperationFlg = Active;
-        //ƒQ[ƒ€ŠÔ’â~
-        GameManager.Instance.IsGetTime_flg = Active;
-
         Active = !Active;
 
+        if (Active)
+        {
+            //ƒQ[ƒ€ˆê’â~
+            GameManager.Instance.GameStop();
+            StopEvent.Invoke();
+        }
+        else
+        {
+            //ƒQ[ƒ€ÄŠJ
+            GameManager.Instance.GameStart();
+            StartEvent.Invoke();
+        }
 
         PauseBack.SetActive(Active);
-        //GameManager.Instance.i
+
     }
 }
