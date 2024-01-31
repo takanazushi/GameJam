@@ -17,9 +17,6 @@ public class TimeControlScript : MonoBehaviour
     {
         Seconds = GameManager.Instance.GetTime_limit % 60;
         Minutes = GameManager.Instance.GetTime_limit / 60;
-
-        Debug.Log(Seconds);
-        Debug.Log(Minutes);
     }
 
     // Update is called once per frame
@@ -30,7 +27,6 @@ public class TimeControlScript : MonoBehaviour
 
         TextFlame.text = Minutes.ToString("00") + ":" + Seconds.ToString("00");
 
-        Debug.Log(Minutes.ToString("00") + ":" + Seconds.ToString("00"));
     }
 
 }
