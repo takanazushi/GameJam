@@ -131,6 +131,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2569344461695996283, guid: 90a684aefa356e84fab6f30a5b95f5f7, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2569344461695996283, guid: 90a684aefa356e84fab6f30a5b95f5f7, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 06fe105954a89164ebee9c199afc69a3, type: 3}
+    - target: {fileID: 2569344461695996283, guid: 90a684aefa356e84fab6f30a5b95f5f7, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3973004683166690716, guid: 90a684aefa356e84fab6f30a5b95f5f7, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5251411
+      objectReference: {fileID: 0}
+    - target: {fileID: 3973004683166690716, guid: 90a684aefa356e84fab6f30a5b95f5f7, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 496.29852
+      objectReference: {fileID: 0}
+    - target: {fileID: 3973004683166690716, guid: 90a684aefa356e84fab6f30a5b95f5f7, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 148.2584
+      objectReference: {fileID: 0}
+    - target: {fileID: 3973004683166690716, guid: 90a684aefa356e84fab6f30a5b95f5f7, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 3973004683166690716, guid: 90a684aefa356e84fab6f30a5b95f5f7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 16.622
+      objectReference: {fileID: 0}
     - target: {fileID: 4363681538286250575, guid: 90a684aefa356e84fab6f30a5b95f5f7, type: 3}
       propertyPath: m_Name
       value: GameUI_Dragon
