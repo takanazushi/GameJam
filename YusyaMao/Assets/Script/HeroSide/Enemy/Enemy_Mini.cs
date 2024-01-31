@@ -20,6 +20,9 @@ public class Enemy_Mini : MonoBehaviour
     [SerializeField]
     int Enemy_No;
 
+    [SerializeField]
+    PlayerData playerData;
+
     public int GetEnemy_No
     {
         get { return Enemy_No; }
@@ -68,12 +71,14 @@ public class Enemy_Mini : MonoBehaviour
         // 移動
         transform.position = Vector2.MoveTowards(
             transform.position, MovePosition, speed);
+
+        playerData.Damage(10);
     }
 
     /// <summary>
     /// ダメージ計算
     /// </summary>
-    /// <param name="damage"></param>
+    /// <param name="damage">ダメージ</param>
     /// <returns>倒したか</returns>
     public bool Damage(float damage)
     {

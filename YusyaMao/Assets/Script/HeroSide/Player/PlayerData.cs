@@ -19,6 +19,12 @@ public class PlayerData : MonoBehaviour
     [SerializeField]
     float AttackPower;
 
+    /// <summary>
+    /// HP
+    /// </summary>
+    [SerializeField]
+    float Hp;
+
     public float GetAttackPower
     {
         get { return AttackPower; }
@@ -61,5 +67,15 @@ public class PlayerData : MonoBehaviour
     {
         AttackPower += addpower;
         Debug.Log("uppo:" + AttackPower);
+    }
+
+    public void Damage(float damgae)
+    {
+        Hp -= damgae;
+
+        if (Hp<=0)
+        {
+            Hp = 0;
+        }
     }
 }
