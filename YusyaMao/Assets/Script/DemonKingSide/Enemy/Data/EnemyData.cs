@@ -12,9 +12,10 @@ public class EnemyData : ScriptableObject
     [SerializeField]
     private string[] keyNames;
 
+    private string key;
+
     public int MaxHP { get { return maxHP; } }
 
     public string[] KeyNames {  get { return keyNames; } }
-
 
 }
