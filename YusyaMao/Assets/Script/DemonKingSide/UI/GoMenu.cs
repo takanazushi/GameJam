@@ -6,9 +6,19 @@ using UnityEngine.UI;
 
 public class GoMenu : MonoBehaviour
 {
-    [Header("ポーズ画面の親を代入")]
+    [Header("ポーズ親")]
     public GameObject PauseBack;
+
+    [Header("効果音")]
+    public AudioClip Decision;
+    public AudioClip Exit;
+    
     private bool Active;
+
+    private void Start()
+    {
+        Active = false;
+    }
 
     private void Update()
     {
@@ -17,7 +27,17 @@ public class GoMenu : MonoBehaviour
 
     public void OnButton()
     {
+        if (Active == false)
+        {
+            GetComponent<AudioSource>().PlayOneShot(Decision);
+        }
+        else if (Active == true)
+        {
+            GetComponent<AudioSource>().PlayOneShot(Exit);
+        }
+
+
         Active = !Active;
-        //タイマーを止められたらうれしい
     }
+
 }
