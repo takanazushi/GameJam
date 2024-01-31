@@ -43,7 +43,7 @@ public class EnemyDamage : MonoBehaviour
             HP = enemyData.MaxHP;
             keyName = enemyData.KeyNames[UnityEngine.Random.Range(0, enemyData.KeyNames.Length)];
             //Debug.Log(enemyData.name + "HP：" + HP);
-           // Debug.Log(enemyData.name + "キー：" + keyName);
+            Debug.Log(enemyData.name + "キー：" + keyName);
         }
 
         if (playerData == null)
@@ -57,9 +57,11 @@ public class EnemyDamage : MonoBehaviour
 
         if (AttackRange == null)
         {
+            AttackRange = GameObject.Find("Cursor");
             Debug.LogError("攻撃範囲のところに何も入ってません(>_<)");
         }
-        else
+
+        if (AttackRange != null)
         {
             mouseFollow = AttackRange.GetComponent<MouseFollow>();
         }

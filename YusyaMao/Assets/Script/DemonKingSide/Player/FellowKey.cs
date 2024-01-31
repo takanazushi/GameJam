@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HPText : MonoBehaviour
+public class FellowKey : MonoBehaviour
 {
-    [SerializeField, Header("HP表記マネージャ")]
-    private Number_test HPManager;
-
     [SerializeField, Header("Key表記マネージャ")]
     private KeyText keyTextManager;
 
-
     private GameObject parent;
-    EnemyDamage enemyDamage;
+    FellowDamage fellowDamage;
 
     int keyNumber = 0;
 
@@ -22,28 +18,23 @@ public class HPText : MonoBehaviour
     void Start()
     {
         parent = transform.parent.gameObject;
-        enemyDamage=parent.GetComponent<EnemyDamage>();
-
-       
+        fellowDamage = parent.GetComponent<FellowDamage>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (enemyDamage.KeyName != null && flag) 
+        if (fellowDamage.KeyName != null && flag)
         {
             KeyTextNumber();
             keyTextManager.TextInit(keyNumber);
             flag = false;
         }
-
-        HPManager.DestroyObject(0f);
-        HPManager.Init(enemyDamage.GetHP,0);
     }
 
     private void KeyTextNumber()
     {
-        switch (enemyDamage.KeyName)
+        switch (fellowDamage.KeyName)
         {
             case "A":
                 keyNumber = 0;

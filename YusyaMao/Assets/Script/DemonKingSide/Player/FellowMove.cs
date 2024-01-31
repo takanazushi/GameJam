@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class FellowMove : MonoBehaviour
 {
-    [SerializeField, Header("移動速度")]
-    private float speed = 1.0f;
+    [SerializeField, Header("味方データ")]
+    private FellowData fellowData;
 
     [SerializeField, Header("ポーション")]
     private GameObject portion;
@@ -13,7 +13,13 @@ public class FellowMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(-speed * Time.deltaTime, 0, 0);
+        transform.Translate(-fellowData.Speed * Time.deltaTime, 0, 0);
+    }
+
+    private void OnBecameInvisible()
+    {
+        // カメラ外に出たらSetActiveをFalseにする
+        gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

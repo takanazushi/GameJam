@@ -18,6 +18,14 @@ public class PowerUp : MonoBehaviour
 
     private bool isMoving = false;
 
+    private void Start()
+    {
+        if (Player == null)
+        {
+            Player = GameObject.Find("Player");
+        }
+    }
+
     private void Update()
     {
         if (isMoving)

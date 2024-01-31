@@ -9,9 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 070b62398eb1b944cb21f49ffee8e95d, type: 3}
-  m_Name: Player
+  m_Script: {fileID: 11500000, guid: c2d24634765d6f64885f3d521b2aeb28, type: 3}
+  m_Name: Red
   m_EditorClassIdentifier: 
-  attackPower: 39
-  attackRange: 10
-  canUseSKill: 1
+  FellowName: Red
+  keyNames:
+  - Z
+  - X
+  - C
+  speed: 1

@@ -5,11 +5,11 @@ using UnityEngine;
 public class KeyCtrl : MonoBehaviour
 {
     [SerializeField]
-    private Sprite[] sp = new Sprite[26];
+    private Sprite[] sp = new Sprite[27];
 
     public void ChangeSprite(int no)
     {
-        if (no > 25 || no < 0)
+        if (no > 26|| no < 0)
         {
             no = 0;
         }
