@@ -1282,3 +1282,19 @@ AssetImportParameters requested are different than current active one (requested
   custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 356.689443 seconds.
+  path: Assets/Prefab/HeroSide/GameUI_Braver.prefab
+  artifactKey: Guid(be4bcfde28b37fb4a8d5e7c135b5a5e2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefab/HeroSide/GameUI_Braver.prefab using Guid(be4bcfde28b37fb4a8d5e7c135b5a5e2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b8c9a8aeeb8bbf3de4ef94d4eb567eca') in 0.043230 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 78
+========================================================================
+Received Import Request.
+  Time since last request: 48.238270 seconds.
+  path: Assets/Script/HeroSide/UI/GoMenu.cs
+  artifactKey: Guid(0ff42ce8df51bad48b93c9249e0796be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Script/HeroSide/UI/GoMenu.cs using Guid(0ff42ce8df51bad48b93c9249e0796be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b6fee1d37f1852910aea5b0b6905af22') in 0.000722 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
