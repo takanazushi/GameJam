@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerData : MonoBehaviour
@@ -13,7 +11,6 @@ public class PlayerData : MonoBehaviour
     /// <summary>
     /// •ŠíƒŠƒXƒg
     /// </summary>
-    [SerializeField]
     Weapon_Move[] weapon_pool;
 
     /// <summary>
@@ -39,7 +36,7 @@ public class PlayerData : MonoBehaviour
 
         }
 
-        
+
     }
 
     // Update is called once per frame
@@ -48,7 +45,7 @@ public class PlayerData : MonoBehaviour
         //“G‚ÉUŒ‚Às
         if (GameManager.Instance.GetGameOperationFlg &&
             GameManager.Instance.IsGetTime_flg &&
-            Input.GetMouseButtonDown(0)) 
+            Input.GetMouseButtonDown(0))
         {
             EnemyManeger.EnemyDamage(AttackPower);
 
