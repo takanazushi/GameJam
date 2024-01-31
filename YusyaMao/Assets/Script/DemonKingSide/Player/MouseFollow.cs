@@ -37,19 +37,23 @@ public class MouseFollow : MonoBehaviour
         transform.position = worldPos;
 
         gameObject.transform.localScale = new Vector3(playerData.AttackRange, playerData.AttackRange, 0);
+
+        Debug.Log(hitEnemy);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         // 衝突したオブジェクトがEnemyタグ
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.name.StartsWith("Enemy"))
         {
             hitEnemy = true;
+            Debug.Log(collision.name + "当たってる");
         }
 
-        if(collision.gameObject.tag== "Fellow")
+        if (collision.gameObject.name.StartsWith("Fellow"))
         {
             hitfellow = true;
+            Debug.Log(collision.name + "当たってる");
         }
     }
 

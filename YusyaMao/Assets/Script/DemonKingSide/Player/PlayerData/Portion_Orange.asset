@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 070b62398eb1b944cb21f49ffee8e95d, type: 3}
-  m_Name: Player
+  m_Script: {fileID: 11500000, guid: 53a64f207f3621b4781c2768d9d0e62c, type: 3}
+  m_Name: Portion_Orange
   m_EditorClassIdentifier: 
-  attackPower: 7
-  attackRange: 2
-  canUseSKill: 1
+  potionName: Portion_Orange
+  effect: 1

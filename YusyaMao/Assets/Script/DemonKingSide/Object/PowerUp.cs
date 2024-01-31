@@ -36,19 +36,16 @@ public class PowerUp : MonoBehaviour
             {
                 case PortionData.PotionEffect.AttackPowerUp1:
                     playerData.ArrackPower += 1;
-                    Debug.Log("プレイヤーを1強化したぞ");
                     gameObject.SetActive(false);
                     break;
 
                 case PortionData.PotionEffect.AttackPowerUp5:
                     playerData.ArrackPower += 5;
-                    Debug.Log("プレイヤーを5強化したぞ");
                     gameObject.SetActive(false);
                     break;
 
                 case PortionData.PotionEffect.BigSkillRecovery:
                     playerData.CanUseSKill = true;
-                    Debug.Log("必殺技を使えるようにしたぞ！");
                     gameObject.SetActive(false);
                     break;
 
@@ -56,7 +53,6 @@ public class PowerUp : MonoBehaviour
                     if (playerData.AttackRange !=11)
                     {
                         playerData.AttackRange += 1;
-                        Debug.Log("攻撃範囲を広くしたぞ");
                     }
                     gameObject.SetActive(false);
                     break;
