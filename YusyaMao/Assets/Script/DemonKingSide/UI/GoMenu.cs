@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class GoMenu : MonoBehaviour
 {
+    [Header("ポーズ画面の親を代入")]
     public GameObject PauseBack;
     private bool Active;
 
@@ -17,5 +18,6 @@ public class GoMenu : MonoBehaviour
     public void OnButton()
     {
         Active = !Active;
+        //タイマーを止められたらうれしい
     }
 }
