@@ -8,16 +8,21 @@ public class Enemy_Fluffy : MonoBehaviour
     /// ‰ŠúYÀ•W•Û
     /// </summary>
     [Header("‰ŠúY")]
-    float Amplitude;
+    float initialY;
 
     private void Start()
     {
-        Amplitude = this.transform.position.y;
+        initialY = transform.position.y;
     }
 
     private void Update()
     {
         transform.position = new Vector2(
-            transform.position.x, Amplitude + Mathf.PingPong(Time.time / 3, 0.3f));
+            transform.position.x, initialY + Mathf.PingPong(Time.time / 3, 0.3f));
+    }
+
+    public void SetinitialY(float y)
+    {
+        initialY= y;
     }
 }

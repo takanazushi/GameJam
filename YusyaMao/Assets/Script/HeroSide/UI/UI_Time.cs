@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Žg‚Á‚Ä‚È‚¢‚Å‚·
 public class UI_Time : MonoBehaviour
 {
     Text UI_text;

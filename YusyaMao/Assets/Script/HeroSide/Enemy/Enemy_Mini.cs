@@ -30,6 +30,7 @@ public class Enemy_Mini : MonoBehaviour
         Type1,
         Type2,
         Type3,
+        Type4,
     }
     [Header("敵の種類")]
     public Enemy_Type EnemyType;
@@ -41,14 +42,12 @@ public class Enemy_Mini : MonoBehaviour
     public Sprite Enemy1;
     public Sprite Enemy2;
     public Sprite Enemy3;
+    public Sprite Enemy4;
 
     //移動前位置
     private Vector2 StartPosition;
     //移動後位置
     private Vector2 MovePosition;
-
-    //画像変更
-    //private Image image;
 
     private void Start()
     {
@@ -56,15 +55,19 @@ public class Enemy_Mini : MonoBehaviour
         MovePosition = new Vector2(Random.Range(0.0f, -6f), StartPosition.y);
 
         transform.position = StartPosition;
-
-
     }
 
     private void Update()
     {
+        float speed = Speed * Time.deltaTime;
+        if (!GameManager.Instance.GetGameOperationFlg)
+        {
+            speed = 0;
+        }
+
         // 移動
         transform.position = Vector2.MoveTowards(
-            transform.position, MovePosition, Speed * Time.deltaTime);
+            transform.position, MovePosition, speed);
     }
 
     /// <summary>
@@ -91,14 +94,13 @@ public class Enemy_Mini : MonoBehaviour
     //    Debug.Log("atatta");
     //}
 
-    public void SetStart(Vector2 pos, Enemy_Type Type, float EnemyPower)
-    {
-        pos = StartPosition;
-        Type = EnemyType;
-        EnemyPower = Power;
-    }
-
-    public void SetStart(int no,float hp)
+    /// <summary>
+    /// 敵を生成
+    /// </summary>
+    /// <param name="no">生成番号</param>
+    /// <param name="hp">HP</param>
+    /// <param name="type">画像種類</param>
+    public void SetStart(int no,float hp, Enemy_Type type)
     {
         Enemy_No = no;
         HP = hp;
@@ -106,9 +108,25 @@ public class Enemy_Mini : MonoBehaviour
         MovePosition = new Vector2(Random.Range(-2.5f, -6f), StartPosition.y);
         transform.position = StartPosition;
 
+        switch (type)
+        {
+            case Enemy_Type.Type1:
+                GetComponent<SpriteRenderer>().sprite = Enemy1;
+                break;
+            case Enemy_Type.Type2:
+                GetComponent<SpriteRenderer>().sprite = Enemy2;
+                break;
+            case Enemy_Type.Type3:
+                GetComponent<SpriteRenderer>().sprite = Enemy3;
+                break;
+            case Enemy_Type.Type4:
+                GetComponent<SpriteRenderer>().sprite = Enemy4;
+                break;
+        }
 
         //    pos = StartPosition;
         //    Type = EnemyType;
         //    EnemyPower = Power;
-        }
+    }
+
 }

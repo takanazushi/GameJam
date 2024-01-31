@@ -12,7 +12,10 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// ゲーム操作可能フラグtrue:可能
     /// </summary>
-    bool GameOperationFlg;
+    bool GameOperationFlg=true;
+    /// <summary>
+    /// ゲーム操作可能フラグ取得
+    /// </summary>
     public bool GetGameOperationFlg
     {
         get { return GameOperationFlg; }
@@ -36,6 +39,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     bool IsTime_flg;
 
+    /// <summary>
+    /// 制限時間を計測するか取得
+    /// </summary>
     public bool IsGetTime_flg
     {
         get { return IsTime_flg; }
@@ -58,6 +64,20 @@ public class GameManager : MonoBehaviour
         get { return Time_limit_Start- Time_limit; }
     }
 
+    /// <summary>
+    /// リザルト表示
+    /// </summary>
+    bool Resultflg;
+
+    /// <summary>
+    /// リザルトフラグ表示
+    /// </summary>
+    public bool IsResultflg
+    {
+        get { return Resultflg; }
+        set { Resultflg = value; }
+    }
+
     private void Awake()
     {
         if (!Instance)
@@ -71,6 +91,7 @@ public class GameManager : MonoBehaviour
         }
 
         Time_limit = Time_limit_Start;
+        Resultflg = false;
     }
 
     private void FixedUpdate()
@@ -92,5 +113,9 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void On_Result()
+    {
+        Resultflg = true;
+    }
 
 }

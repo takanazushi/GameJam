@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static Enemy_Mini;
 
 public class EnemyManeger : MonoBehaviour
 {
@@ -47,6 +48,14 @@ public class EnemyManeger : MonoBehaviour
     int KnockOutCount;
 
     /// <summary>
+    /// 敵を倒した数取得
+    /// </summary>
+    public int GetKnockOutCount
+    {
+        get { return KnockOutCount; }
+    }
+
+    /// <summary>
     /// 敵を生成するかtrue:生成あり
     /// </summary>
     [SerializeField]
@@ -81,6 +90,7 @@ public class EnemyManeger : MonoBehaviour
         }
         exeTime = GameManager.Instance.GetTime_limit- ExeCoolTime;
         EnemyBossflg = false;
+        KnockOutCount = 0;
     }
 
 
@@ -111,12 +121,16 @@ public class EnemyManeger : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// ボス生成
+    /// </summary>
     void EnemyBoss_Generator()
     {
         Enemy_Boss.gameObject.SetActive(true);
 
         //制限時間カウント停止
         GameManager.Instance.IsGetTime_flg = false;
+
         EnemyBossflg = true;
     }
 
@@ -131,12 +145,34 @@ public class EnemyManeger : MonoBehaviour
             {
                 //敵スクリプトの初期化処理を実行
                 enemy.gameObject.SetActive(true);
-                enemy.SetStart(Enemy_Count, Enemy_HP);
 
-                //todo敵の強さを更新
+                //時間によってタイプを変更
+                Enemy_Type enemy_Type = Enemy_Type.Type1;
+
+                if (GameManager.Instance.GetTime_limit <= 45)
+                {
+                    enemy_Type = Enemy_Type.Type4;
+
+                }
+                else if (GameManager.Instance.GetTime_limit <= 90)
+                {
+                    enemy_Type = Enemy_Type.Type3;
+                }
+                else if (GameManager.Instance.GetTime_limit <= 135)
+                {
+                    enemy_Type = Enemy_Type.Type2;
+                }
+
+
+                enemy.SetStart(Enemy_Count, Enemy_HP, enemy_Type);
+
+                //todo敵のHPを更新
                 Enemy_HP = Enemy_HP * 2;
                 Enemy_Count++;
                 break;
+            
+
+
             }
         }
 
@@ -175,8 +211,58 @@ public class EnemyManeger : MonoBehaviour
                 //playerの攻撃力を更新
                 playerData.PowerUpdate(playerData.GetAttackPower*0.5f);
             }
-
+        }
+        //ボスに攻撃するか
+        else if (Enemy_Boss.gameObject.activeSelf)
+        {
+            Enemy_Boss.Damage(damage);
         }
 
+    }
+
+    /// <summary>
+    /// 位置から近い敵のTransformを返す
+    /// </summary>
+    /// <param name="pos">位置</param>
+    /// <returns></returns>
+    public Vector3 EnemyPointSearch(Vector3 pos)
+    {
+        Transform listSearch = null;
+
+
+        foreach (var enemy in Enemy_pool)
+        {
+
+            if (!enemy.gameObject.activeSelf)
+            {
+                continue;
+            }
+
+            //クリックした位置とオブジェクトとの距離を計算
+            float distance = Vector3.Distance(pos, enemy.gameObject.transform.position);
+
+            listSearch = enemy.gameObject.transform;
+        }
+
+
+        //ボス判定
+        if (listSearch==null)
+        {
+            if (Enemy_Boss.gameObject.activeSelf)
+            {
+                listSearch = Enemy_Boss.gameObject.transform;
+            }
+        }
+
+        if(listSearch == null)
+        {
+            return pos;
+
+        }
+        else
+        {
+            return listSearch.position;
+
+        }
     }
 }

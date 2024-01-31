@@ -19,7 +19,7 @@ public class EnemyBoss : MonoBehaviour
 
     void Start()
     {
-        StartMoveflg=true;
+        StartMoveflg = true;
     }
 
     // Update is called once per frame
@@ -28,8 +28,14 @@ public class EnemyBoss : MonoBehaviour
         //登場時の移動
         if (StartMoveflg)
         {
+            float speed = Speed * Time.deltaTime;
+            if (!GameManager.Instance.GetGameOperationFlg)
+            {
+                speed = 0;
+            }
+
             transform.position = Vector2.MoveTowards(
-                transform.position, Position, Speed * Time.deltaTime);
+                transform.position, Position, speed);
 
             //移動終了
             if ((Vector2)transform.position == Position) 
@@ -43,4 +49,24 @@ public class EnemyBoss : MonoBehaviour
 
         }
     }
+
+    /// <summary>
+    /// ダメージ計算
+    /// </summary>
+    /// <param name="damage"></param>
+    public void Damage(float damage)
+    {
+        HP -= damage;
+
+        if (HP <= 0)
+        {
+            GameManager.Instance.IsResultflg = true;
+            GameManager.Instance.IsGetTime_flg = false;
+            GameManager.Instance.GetGameOperationFlg = false;
+            Debug.Log("倒した");
+        }
+
+
+    }
+
 }

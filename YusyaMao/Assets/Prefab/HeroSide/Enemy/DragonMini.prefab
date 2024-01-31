@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3687875b4b3f9cd4083a5bafa25f5e08, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 65dd8a425c4507e40a28f797fd96c9af, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -124,7 +124,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.44, y: 1.68}
+    oldSize: {x: 1.86, y: 2.13}
     newSize: {x: 1.44, y: 1.68}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -178,9 +178,10 @@ MonoBehaviour:
   Enemy_No: 0
   EnemyType: 0
   Power: 1
-  Enemy1: {fileID: 21300000, guid: 3687875b4b3f9cd4083a5bafa25f5e08, type: 3}
-  Enemy2: {fileID: 21300000, guid: 3687875b4b3f9cd4083a5bafa25f5e08, type: 3}
-  Enemy3: {fileID: 21300000, guid: 3687875b4b3f9cd4083a5bafa25f5e08, type: 3}
+  Enemy1: {fileID: 21300000, guid: 52efabfb7823c9543928b2ac88962f92, type: 3}
+  Enemy2: {fileID: 21300000, guid: 00ce27eb47e375e4aad8f30ccfdf38e2, type: 3}
+  Enemy3: {fileID: 21300000, guid: ed6f6ed579cb70d4882043a58172f8f4, type: 3}
+  Enemy4: {fileID: 21300000, guid: 65dd8a425c4507e40a28f797fd96c9af, type: 3}
 --- !u!114 &6655677696473395084
 MonoBehaviour:
   m_ObjectHideFlags: 0
