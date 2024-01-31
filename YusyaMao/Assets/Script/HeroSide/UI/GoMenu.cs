@@ -17,6 +17,5 @@ public class GoMenu : MonoBehaviour
     public void OnButton()
     {
         Active = !Active;
-        GameManager.Instance.i
     }
 }
