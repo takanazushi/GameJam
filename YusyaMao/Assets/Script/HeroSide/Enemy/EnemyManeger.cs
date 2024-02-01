@@ -7,7 +7,7 @@ using static Enemy_Mini;
 public class EnemyManeger : MonoBehaviour
 {
     [SerializeField]
-    PlayerData playerData;
+    Hero playerData;
 
     /// <summary>
     /// 敵のHP初期値
@@ -217,6 +217,28 @@ public class EnemyManeger : MonoBehaviour
     /// <param name="damage">ダメージ</param>
     public void EnemyDamage(Transform tra, float damage)
     {
+        if(Enemy_Boss.transform== tra)
+        {
+            if (Enemy_Boss.Damage(damage))
+            {
+                //ボスの倒れるモーション終了時に出来れば・・・
+                GameManager.Instance.On_Result();
+
+                GameManager.Instance.IsGetTime_flg = false;
+                GameManager.Instance.GetGameOperationFlg = false;
+                Debug.Log("倒した");
+
+                foreach (var enemy in Enemy_pool)
+                {
+                    if(enemy.gameObject.activeSelf) 
+                    {
+                        enemy.SetMoveType(Enemy_MoveType.RunAway, 3, false);
+                    }
+                }
+
+            }
+            return;
+        }
         foreach (var enemy in Enemy_pool)
         {
             if (enemy.transform == tra) 
@@ -230,8 +252,12 @@ public class EnemyManeger : MonoBehaviour
                     //playerの攻撃力を更新
                     playerData.PowerUpdate(playerData.GetAttackPower * 0.5f);
                 }
+                break;
             }
         }
+
+        
+
     }
 
     /// <summary>

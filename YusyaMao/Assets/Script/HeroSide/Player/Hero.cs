@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class PlayerData : MonoBehaviour
+public class Hero : MonoBehaviour
 {
     [SerializeField]
     EnemyManeger EnemyManeger;
@@ -64,7 +64,6 @@ public class PlayerData : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Enemy"))
                 {
-
                     EnemyManeger.EnemyDamage(hit.transform, AttackPower);
 
                     //武器モーション開始

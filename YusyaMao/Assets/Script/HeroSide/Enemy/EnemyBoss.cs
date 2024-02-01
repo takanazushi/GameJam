@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class EnemyBoss : MonoBehaviour
 {
@@ -16,6 +17,13 @@ public class EnemyBoss : MonoBehaviour
 
     [SerializeField,Header("開始移動中")]
     bool StartMoveflg;
+
+    /// <summary>
+    /// 攻撃クールタイム
+    /// </summary>
+    [SerializeField]
+    float Attack_Time;
+
 
     void Start()
     {
@@ -48,25 +56,34 @@ public class EnemyBoss : MonoBehaviour
             }
 
         }
+        else
+        {
+            if (GameManager.Instance.GetGameOperationFlg)
+            {
+                Attack_Time += Time.deltaTime;
+            }
+
+
+        }
+
     }
 
     /// <summary>
     /// ダメージ計算
     /// </summary>
     /// <param name="damage"></param>
-    public void Damage(float damage)
+    public bool Damage(float damage)
     {
         HP -= damage;
 
         if (HP <= 0)
         {
-            GameManager.Instance.IsResultflg = true;
-            GameManager.Instance.IsGetTime_flg = false;
-            GameManager.Instance.GetGameOperationFlg = false;
-            Debug.Log("倒した");
+
+            return true;
+
         }
 
-
+        return false;
     }
 
 }
