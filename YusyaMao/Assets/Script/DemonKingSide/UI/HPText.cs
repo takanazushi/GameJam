@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class HPText : MonoBehaviour
 {
-    [SerializeField, Header("HP表記マネージャ")]
-    private Number_test HPManager;
-
     [SerializeField, Header("Key表記マネージャ")]
     private KeyText keyTextManager;
 
@@ -23,8 +20,6 @@ public class HPText : MonoBehaviour
     {
         parent = transform.parent.gameObject;
         enemyDamage=parent.GetComponent<EnemyDamage>();
-
-       
     }
 
     // Update is called once per frame
@@ -36,9 +31,6 @@ public class HPText : MonoBehaviour
             keyTextManager.TextInit(keyNumber);
             flag = false;
         }
-
-        HPManager.DestroyObject(0f);
-        HPManager.Init(enemyDamage.GetHP,0);
     }
 
     private void KeyTextNumber()

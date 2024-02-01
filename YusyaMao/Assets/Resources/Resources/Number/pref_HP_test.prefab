@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6836971109511198794
+--- !u!1 &2552828883896624060
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4801173635944866429}
-  - component: {fileID: 2571477178530513737}
-  - component: {fileID: 6174461000957391440}
+  - component: {fileID: 9078668941050892453}
+  - component: {fileID: 6364366185487586278}
+  - component: {fileID: 8708809828267798307}
   m_Layer: 0
   m_Name: pref_HP_test
   m_TagString: Untagged
@@ -18,13 +18,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4801173635944866429
+--- !u!4 &9078668941050892453
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6836971109511198794}
+  m_GameObject: {fileID: 2552828883896624060}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -33,13 +33,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &2571477178530513737
+--- !u!212 &6364366185487586278
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6836971109511198794}
+  m_GameObject: {fileID: 2552828883896624060}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -85,26 +85,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6174461000957391440
+--- !u!114 &8708809828267798307
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6836971109511198794}
+  m_GameObject: {fileID: 2552828883896624060}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a77b5533068cc24cb5dbe9ef470c97f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sp:
-  - {fileID: -170747993, guid: 6352b74fd52098e47ad4b186fa06eafe, type: 3}
-  - {fileID: 1561722559, guid: 6352b74fd52098e47ad4b186fa06eafe, type: 3}
-  - {fileID: -2123374288, guid: 6352b74fd52098e47ad4b186fa06eafe, type: 3}
-  - {fileID: -366930551, guid: 6352b74fd52098e47ad4b186fa06eafe, type: 3}
-  - {fileID: -769463054, guid: 6352b74fd52098e47ad4b186fa06eafe, type: 3}
-  - {fileID: 1543438337, guid: 6352b74fd52098e47ad4b186fa06eafe, type: 3}
-  - {fileID: 148832779, guid: 6352b74fd52098e47ad4b186fa06eafe, type: 3}
-  - {fileID: 1964326307, guid: 6352b74fd52098e47ad4b186fa06eafe, type: 3}
-  - {fileID: 1999037241, guid: 6352b74fd52098e47ad4b186fa06eafe, type: 3}
-  - {fileID: 1917843144, guid: 6352b74fd52098e47ad4b186fa06eafe, type: 3}
+  - {fileID: -1587597939, guid: 0cf3e5bf05bfc034db32f2a3df5c2bbe, type: 3}
+  - {fileID: 194090416, guid: 0cf3e5bf05bfc034db32f2a3df5c2bbe, type: 3}
+  - {fileID: 2066279997, guid: 0cf3e5bf05bfc034db32f2a3df5c2bbe, type: 3}
+  - {fileID: -1660449451, guid: 0cf3e5bf05bfc034db32f2a3df5c2bbe, type: 3}
+  - {fileID: -770934303, guid: 0cf3e5bf05bfc034db32f2a3df5c2bbe, type: 3}
+  - {fileID: 905124794, guid: 0cf3e5bf05bfc034db32f2a3df5c2bbe, type: 3}
+  - {fileID: 1266192437, guid: 0cf3e5bf05bfc034db32f2a3df5c2bbe, type: 3}
+  - {fileID: -1781113253, guid: 0cf3e5bf05bfc034db32f2a3df5c2bbe, type: 3}
+  - {fileID: -1861370962, guid: 0cf3e5bf05bfc034db32f2a3df5c2bbe, type: 3}
+  - {fileID: 550445801, guid: 0cf3e5bf05bfc034db32f2a3df5c2bbe, type: 3}

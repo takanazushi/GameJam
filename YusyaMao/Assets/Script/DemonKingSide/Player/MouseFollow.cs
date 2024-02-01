@@ -12,6 +12,14 @@ public class MouseFollow : MonoBehaviour
     [SerializeField,Header("PlayerÉfÅ[É^")]
     private PlayerDoragonData playerData;
 
+    [SerializeField]
+    private List<GameObject> CurrentEnemies;
+
+    public List<GameObject> GetEnemyList
+    {
+        get { return CurrentEnemies; }
+    }
+
     public bool HitEnemy
     {
         get { return hitEnemy; }
@@ -25,6 +33,7 @@ public class MouseFollow : MonoBehaviour
     private void Start()
     {
         gameObject.transform.localScale = new Vector3(playerData.AttackRange, playerData.AttackRange, 0);
+        CurrentEnemies=new List<GameObject>();
     }
 
     void Update()
@@ -47,6 +56,10 @@ public class MouseFollow : MonoBehaviour
         if (collision.gameObject.name.StartsWith("Enemy"))
         {
             hitEnemy = true;
+            if (!CurrentEnemies.Contains(collision.gameObject))
+            {
+                CurrentEnemies.Add(collision.gameObject);
+            }
             Debug.Log(collision.name + "ìñÇΩÇ¡ÇƒÇÈ");
         }
 
@@ -62,6 +75,7 @@ public class MouseFollow : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             hitEnemy = false;
+            CurrentEnemies.Remove(collision.gameObject);
         }
 
         if (collision.gameObject.tag == "Fellow")

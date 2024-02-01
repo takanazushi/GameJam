@@ -7,10 +7,12 @@ public class EnemyMove : MonoBehaviour
     [SerializeField, Header("ˆÚ“®‘¬“x")]
     private float speed = 1.0f;
 
+    private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame

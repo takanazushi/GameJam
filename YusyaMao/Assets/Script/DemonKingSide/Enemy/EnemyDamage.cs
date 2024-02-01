@@ -73,7 +73,7 @@ public class EnemyDamage : MonoBehaviour
         KeyCodeGet();
 
         //マウスが敵の上にあって、クリックされたときにHPを減らす
-        if (mouseFollow.HitEnemy)
+        if (mouseFollow.HitEnemy&&mouseFollow.GetEnemyList.Contains(this.gameObject))
         {
             if (keyName == "Click")
             {
