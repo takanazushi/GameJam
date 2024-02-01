@@ -8,7 +8,7 @@ public class FellowDamage : MonoBehaviour
     private FellowData fellowData;
 
     [SerializeField, Header("プレイヤーのデータ")]
-    private PlayerData playerData;
+    private PlayerDoragonData playerData;
 
     [SerializeField, Header("攻撃範囲")]
     private GameObject AttackRange;

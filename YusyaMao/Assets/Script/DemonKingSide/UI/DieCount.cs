@@ -11,7 +11,7 @@ public class DieCount : MonoBehaviour
     private TextMeshProUGUI enemyDieCountText;
 
     [SerializeField]
-    private PlayerData playerData;
+    private PlayerDoragonData playerData;
 
     [SerializeField]
     private GameObject enemyParent;

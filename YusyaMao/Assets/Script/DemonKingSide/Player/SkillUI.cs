@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class SkillUI : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField, Header("プレイヤーのデータ")]
-    private PlayerData playerData;
+    private PlayerDoragonData playerData;
 
     [SerializeField,Header("プレイヤースキル")]
     private PlayerSkill skill;

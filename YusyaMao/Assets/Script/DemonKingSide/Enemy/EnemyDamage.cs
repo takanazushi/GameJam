@@ -6,7 +6,7 @@ public class EnemyDamage : MonoBehaviour
     private EnemyData enemyData;
 
     [SerializeField, Header("プレイヤーのデータ")]
-    private PlayerData playerData;
+    private PlayerDoragonData playerData;
 
     [SerializeField, Header("攻撃範囲")]
     private GameObject AttackRange;

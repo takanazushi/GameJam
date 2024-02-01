@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerSkill : MonoBehaviour
 {
     [SerializeField, Header("プレイヤーのデータ")]
-    private PlayerData playerData;
+    private PlayerDoragonData playerData;
 
     [SerializeField, Header("メインCamera")]
     private Camera mainCamera;

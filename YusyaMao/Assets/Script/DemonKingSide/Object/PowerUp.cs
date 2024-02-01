@@ -5,7 +5,7 @@ using UnityEngine;
 public class PowerUp : MonoBehaviour
 {
     [SerializeField, Header("プレイヤーのデータ")]
-    private PlayerData playerData;
+    private PlayerDoragonData playerData;
 
     [SerializeField, Header("プレイヤー")]
     private GameObject Player;

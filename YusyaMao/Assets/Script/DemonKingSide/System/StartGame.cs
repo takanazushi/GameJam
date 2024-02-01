@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class StartGame : MonoBehaviour
 {
     [SerializeField]
-    private PlayerData playerData;
+    private PlayerDoragonData playerData;
 
     //Scene‚ª—LŒø‚É‚È‚Á‚½Žž
     private void OnEnable()

@@ -11,7 +11,7 @@ public class FellowGenerator : MonoBehaviour
     private GameObject fellowParent;
 
     [SerializeField]
-    private PlayerData playerData;
+    private PlayerDoragonData playerData;
 
     private int maxCount = 10;
     private float minGenerateInterval = 1.0f;

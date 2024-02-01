@@ -10,7 +10,7 @@ public class MouseFollow : MonoBehaviour
     private bool hitfellow;
 
     [SerializeField,Header("PlayerÉfÅ[É^")]
-    private PlayerData playerData;
+    private PlayerDoragonData playerData;
 
     public bool HitEnemy
     {
