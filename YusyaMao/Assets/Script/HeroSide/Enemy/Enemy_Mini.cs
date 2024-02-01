@@ -42,7 +42,7 @@ public class Enemy_Mini : MonoBehaviour
     /// playerスクリプト
     /// </summary>
     [SerializeField]
-    PlayerData playerData;
+    Hero playerData;
 
     public int GetEnemy_No
     {
@@ -68,6 +68,11 @@ public class Enemy_Mini : MonoBehaviour
         /// playeに体当たり
         /// </summary>
         player_Attack,
+
+        /// <summary>
+        /// ボスが倒されたときの逃げる
+        /// </summary>
+        RunAway,
     }
 
     [SerializeField]
@@ -125,6 +130,12 @@ public class Enemy_Mini : MonoBehaviour
                 {
                     StartPosition = transform.position;
                     MovePosition = new Vector2(5.7f,0);
+                    break;
+                }
+            case Enemy_MoveType.RunAway:
+                {
+                    StartPosition = transform.position;
+                    MovePosition = new Vector2(-11, transform.position.y);
                     break;
                 }
 
@@ -196,6 +207,22 @@ public class Enemy_Mini : MonoBehaviour
 
                     break;
                 }
+            case Enemy_MoveType.RunAway:
+                {
+                    float speed = Speed * Time.deltaTime;
+
+                    transform.position = Vector2.MoveTowards(transform.position, MovePosition, speed);
+
+                    //目標に到達したか
+                    float subn = transform.position.x - MovePosition.x;
+                    if (Mathf.Abs(subn) <= 0.1f)
+                    {
+                        gameObject.SetActive(false);
+                    }
+
+                    break;
+                }
+
         }
     }
 

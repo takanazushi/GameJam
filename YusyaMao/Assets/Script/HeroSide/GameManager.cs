@@ -75,8 +75,13 @@ public class GameManager : MonoBehaviour
     public bool IsResultflg
     {
         get { return Resultflg; }
-        set { Resultflg = value; }
     }
+
+    /// <summary>
+    /// ƒŠƒUƒ‹ƒgUI
+    /// </summary>
+    [SerializeField]
+    GameObject ResultUI;
 
     private void Awake()
     {
@@ -119,6 +124,7 @@ public class GameManager : MonoBehaviour
     public void On_Result()
     {
         Resultflg = true;
+        ResultUI.SetActive(true);
     }
 
     /// <summary>
@@ -143,6 +149,5 @@ public class GameManager : MonoBehaviour
         //ƒQ[ƒ€ŠÔ’â~
         Instance.IsGetTime_flg = false;
     }
-
 
 }
