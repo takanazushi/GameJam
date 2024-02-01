@@ -146,11 +146,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 1
   Speed: 3
+  AttackSpeed: 17
+  MoveSpeed: 4
   Position: {x: 0, y: 0}
   Enemy_No: 0
   Power: 2
   Attack_ReTime: 2
   playerData: {fileID: 0}
+  MoveType: 0
   EnemyType: 0
   Enemy1: {fileID: 21300000, guid: 52efabfb7823c9543928b2ac88962f92, type: 3}
   Enemy2: {fileID: 21300000, guid: 00ce27eb47e375e4aad8f30ccfdf38e2, type: 3}

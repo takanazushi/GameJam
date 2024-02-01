@@ -10,6 +10,17 @@ public class Enemy_Fluffy : MonoBehaviour
     [Header("‰ŠúY")]
     float initialY;
 
+    /// <summary>
+    /// ’â~ƒtƒ‰ƒO:true’â~
+    /// </summary>
+    bool Updataflg;
+
+    public bool IsStopflg
+    {
+        get { return Updataflg; }
+        set { Updataflg = value; }
+    }
+
     private void Start()
     {
         initialY = transform.position.y;
@@ -17,6 +28,10 @@ public class Enemy_Fluffy : MonoBehaviour
 
     private void Update()
     {
+        if (Updataflg)
+        {
+            return;
+        }
         transform.position = new Vector2(
             transform.position.x, initialY + Mathf.PingPong(Time.time / 3, 0.3f));
     }

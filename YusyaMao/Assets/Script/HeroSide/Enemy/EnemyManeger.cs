@@ -127,7 +127,7 @@ public class EnemyManeger : MonoBehaviour
         {
             if (enemy.gameObject.activeSelf)
             {
-                enemy.AttackStop();
+                //enemy.AttackStop();
 
             }
         }
@@ -139,7 +139,7 @@ public class EnemyManeger : MonoBehaviour
         {
             if (enemy.gameObject.activeSelf)
             {
-                enemy.AttackReStart();
+                //enemy.AttackReStart();
 
             }
 
@@ -171,28 +171,35 @@ public class EnemyManeger : MonoBehaviour
                 //敵スクリプトの初期化処理を実行
                 enemy.gameObject.SetActive(true);
 
-                //時間によってタイプを変更
+                //ランダムでタイプを変更
                 Enemy_Type enemy_Type = Enemy_Type.Type1;
-
-                if (GameManager.Instance.GetTime_limit <= 45)
+                float enemy_hp = Enemy_HP;
+                switch (Random.Range(0, 4)) 
                 {
-                    enemy_Type = Enemy_Type.Type4;
+                    case 0:
+                        enemy_Type = Enemy_Type.Type1;
+                        //todo敵のHPを設定
+                        enemy_hp *= 0.5f;
+                        break;
+                    case 1:
+                        enemy_Type = Enemy_Type.Type2;
 
+                        break;
+                    case 2:
+                        enemy_Type = Enemy_Type.Type3;
+                        //todo敵のHPを設定
+                        enemy_hp *= 1.3f;
+                        break;
+                    case 3:
+                        enemy_Type = Enemy_Type.Type4;
+                        //todo敵のHPを設定
+                        enemy_hp *= 1.8f;
+                        break;
                 }
-                else if (GameManager.Instance.GetTime_limit <= 90)
-                {
-                    enemy_Type = Enemy_Type.Type3;
-                }
-                else if (GameManager.Instance.GetTime_limit <= 135)
-                {
-                    enemy_Type = Enemy_Type.Type2;
-                }
 
 
-                enemy.SetStart(Enemy_Count, Enemy_HP, enemy_Type);
+                enemy.SetStart(Enemy_Count, enemy_hp, enemy_Type);
 
-                //todo敵のHPを更新
-                Enemy_HP = Enemy_HP * 2;
                 Enemy_Count++;
                 break;
             
