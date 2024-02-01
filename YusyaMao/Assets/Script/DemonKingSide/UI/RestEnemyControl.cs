@@ -1,34 +1,45 @@
-using TMPro;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RestEnemyControl : MonoBehaviour
 {
-    //text指定用
-    public TextMeshProUGUI Textflame;
-    //表示する変数
-    private int Rest;
+    /// <summary>
+    /// text指定用
+    /// </summary>
+    [Header("入力先テキストボックス")]
+    public Text Textflame;
+
+    /// <summary>
+    /// 残り人数
+    /// </summary>
+    [Header("残り人数")]
+    public int Rest;
+
+    /// <summary>
+    /// KOフラグ
+    /// </summary>
     private bool KO;
-
-    private TimeControlScript time;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        Rest = 100;
-    }
 
     // Update is called once per frame
     void Update()
     {
+        //KO時処理
         if(KO)
         {
             Rest -= 1;
             KO = false;
         }
+
+        //残り人数表示　フォントがひらがなのみ対応のためひらがなで表示
         Textflame.text = ("のこり" + Rest.ToString() + "にん");
     }
 
-    public void OnButton()
+    /// <summary>
+    /// 敵撃破時実行用publicメゾット
+    /// </summary>
+    public void BraverKO()
     {
         KO = true;
     }
