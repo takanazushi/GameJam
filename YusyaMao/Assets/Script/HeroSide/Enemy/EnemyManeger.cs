@@ -97,7 +97,7 @@ public class EnemyManeger : MonoBehaviour
     void Update()
     {
         //“G¶¬
-        if (Enemy_Generatorflg)
+        if (Enemy_Generatorflg && GameManager.Instance.GetGameOperationFlg)
         {
             //ŠÔŒv‘ª
             if(GameManager.Instance.GetTime_limit < exeTime)
@@ -119,31 +119,6 @@ public class EnemyManeger : MonoBehaviour
             EnemyBoss_Generator();
         }
 
-    }
-
-    public void Enemy_ColStop()
-    {
-        foreach (var enemy in Enemy_pool)
-        {
-            if (enemy.gameObject.activeSelf)
-            {
-                //enemy.AttackStop();
-
-            }
-        }
-    }
-
-    public void Enemy_ColStart()
-    {
-        foreach (var enemy in Enemy_pool)
-        {
-            if (enemy.gameObject.activeSelf)
-            {
-                //enemy.AttackReStart();
-
-            }
-
-        }
     }
 
     /// <summary>
@@ -217,13 +192,27 @@ public class EnemyManeger : MonoBehaviour
     /// <param name="damage">ƒ_ƒ[ƒW</param>
     public void EnemyDamage(Transform tra, float damage)
     {
-        if(Enemy_Boss.transform== tra)
+        foreach (var enemy in Enemy_pool)
+        {
+            if (enemy.transform == tra)
+            {
+                //UŒ‚
+                if (enemy.Damage(damage))
+                {
+                    //“G‚ğ“|‚µ‚½ê‡
+                    KnockOutCount++;
+
+                    //player‚ÌUŒ‚—Í‚ğXV
+                    playerData.PowerUpdate(playerData.GetAttackPower * 0.5f);
+                }
+                return;
+            }
+        }
+
+        if (Enemy_Boss.transform== tra)
         {
             if (Enemy_Boss.Damage(damage))
             {
-                //ƒ{ƒX‚Ì“|‚ê‚éƒ‚[ƒVƒ‡ƒ“I—¹‚Éo—ˆ‚ê‚ÎEEE
-                GameManager.Instance.On_Result();
-
                 GameManager.Instance.IsGetTime_flg = false;
                 GameManager.Instance.GetGameOperationFlg = false;
                 Debug.Log("“|‚µ‚½");
@@ -238,22 +227,6 @@ public class EnemyManeger : MonoBehaviour
 
             }
             return;
-        }
-        foreach (var enemy in Enemy_pool)
-        {
-            if (enemy.transform == tra) 
-            {
-                //UŒ‚
-                if (enemy.Damage(damage))
-                {
-                    //“G‚ğ“|‚µ‚½ê‡
-                    KnockOutCount++;
-
-                    //player‚ÌUŒ‚—Í‚ğXV
-                    playerData.PowerUpdate(playerData.GetAttackPower * 0.5f);
-                }
-                break;
-            }
         }
 
         

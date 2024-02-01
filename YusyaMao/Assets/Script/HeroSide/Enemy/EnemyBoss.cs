@@ -6,6 +6,8 @@ using UnityEngine.Rendering.Universal;
 public class EnemyBoss : MonoBehaviour
 {
 
+    Animator anim;
+
     [SerializeField,Header("HP")]
     float HP;
 
@@ -19,15 +21,24 @@ public class EnemyBoss : MonoBehaviour
     bool StartMoveflg;
 
     /// <summary>
-    /// 攻撃クールタイム
+    /// playerスクリプト
+    /// </summary>
+    [SerializeField]
+    Hero playerData;
+
+    /// <summary>
+    /// 攻撃クールタイム秒
     /// </summary>
     [SerializeField]
     float Attack_Time;
+
+    float Attack_TimeCount;
 
 
     void Start()
     {
         StartMoveflg = true;
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -52,7 +63,6 @@ public class EnemyBoss : MonoBehaviour
 
                 //制限時間カウント再開
                 GameManager.Instance.IsGetTime_flg = true;
-
             }
 
         }
@@ -60,12 +70,62 @@ public class EnemyBoss : MonoBehaviour
         {
             if (GameManager.Instance.GetGameOperationFlg)
             {
-                Attack_Time += Time.deltaTime;
+                Attack_TimeCount += Time.deltaTime;
+            }
+
+            if (Attack_TimeCount >= Attack_Time)
+            {
+                Debug.Log("攻撃開始");
+                anim.SetBool("Attack", true);
+                Attack_TimeCount = 0.0f;
             }
 
 
         }
 
+    }
+
+    /// <summary>
+    /// アニメーション再開
+    /// </summary>
+    public void AnimaStart()
+    {
+        anim.SetFloat("MoveSpeed", 1.0f);
+    }
+    /// <summary>
+    /// アニメーション停止
+    /// </summary>
+    public void AnimaStop()
+    {
+        anim.SetFloat("MoveSpeed", 0.0f);
+    }
+
+    /// <summary>
+    /// 攻撃アニメーション終了時
+    /// </summary>
+    public void AttackEnd()
+    {
+
+        playerData.Damage(50);
+        anim.SetBool("Attack", false);
+
+    }
+    /// <summary>
+    /// 被ダメアニメーション終了時
+    /// </summary>
+    public void ReceiveDamageEnd()
+    {
+
+        anim.SetBool("Is_ReceiveDamage", false);
+
+    }
+    /// <summary>
+    /// ダウンアニメーション終了時
+    /// </summary>
+    public void DownEnd()
+    {
+        //リザルト表示
+        GameManager.Instance.On_Result();
     }
 
     /// <summary>
@@ -78,10 +138,12 @@ public class EnemyBoss : MonoBehaviour
 
         if (HP <= 0)
         {
+            anim.SetBool("Is_Down", true);
 
             return true;
 
         }
+        anim.SetBool("Is_ReceiveDamage", true);
 
         return false;
     }
