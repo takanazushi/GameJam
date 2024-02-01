@@ -30,6 +30,7 @@ public class StartGame : MonoBehaviour
             playerData.AttackRange = 1;
             playerData.ArrackPower = 1;
             playerData.CanUseSKill = true;
+            playerData.ClearFlag = false;
         }
 
     }

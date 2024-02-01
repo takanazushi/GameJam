@@ -16,9 +16,29 @@ public class EnemyGenerator : MonoBehaviour
     private float minGenerateInterval = 1.0f;
     private float maxGenerateInterval = 3.0f;
 
+    private bool isPaused = false;
+    private Coroutine geterateEnemy;
+
     private void Start()
     {
-        StartCoroutine(GenerateEnemy());
+        geterateEnemy = StartCoroutine(GenerateEnemy());
+    }
+
+    private void Update()
+    {
+        //if (Input.GetKeyDown(KeyCode.P))
+        //{
+        //    if (isPaused)
+        //    {
+        //        isPaused = false;
+        //        geterateEnemy = StartCoroutine(GenerateEnemy());
+        //    }
+        //    else
+        //    {
+        //        isPaused = true;
+        //        StopCoroutine(geterateEnemy);
+        //    }
+        //}
     }
 
     IEnumerator GenerateEnemy()

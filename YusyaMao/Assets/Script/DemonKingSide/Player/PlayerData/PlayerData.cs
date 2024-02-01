@@ -12,6 +12,11 @@ public class PlayerData : ScriptableObject
     [SerializeField]
     private bool canUseSKill = true;
 
+    [SerializeField]
+    private int maxEnemyCount;
+
+    private bool clearflag = false;
+
     public int ArrackPower 
     {   get { return attackPower; }
 
@@ -28,5 +33,16 @@ public class PlayerData : ScriptableObject
     {
         get { return canUseSKill; }
         set { canUseSKill = value; }
+    }
+
+    public bool ClearFlag
+    {
+        get { return clearflag; }
+        set { clearflag = value; }
+    }
+
+    public int MaxEnemyCount
+    {
+        get { return maxEnemyCount; }
     }
 }

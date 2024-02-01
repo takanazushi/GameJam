@@ -1157,6 +1157,7 @@ GameObject:
   - component: {fileID: 1211620487}
   - component: {fileID: 1211620486}
   - component: {fileID: 1211620485}
+  - component: {fileID: 1211620488}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1238,6 +1239,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1211620488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211620484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    quality: 3
+    frameInfluence: 0.1
+    jitterScale: 1
+    mipBias: 0
+    varianceClampScale: 0.9
+    contrastAdaptiveSharpening: 0
 --- !u!1 &1393632440
 GameObject:
   m_ObjectHideFlags: 0
@@ -1611,8 +1656,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u306E\u3053\u308A100\u305F\u3044"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 594d7583dbb24d942b0a882221d44648, type: 2}
+  m_sharedMaterial: {fileID: -2768943074272766296, guid: 594d7583dbb24d942b0a882221d44648, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1695,6 +1740,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2143304247}
+  - component: {fileID: 2143304248}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -1717,6 +1763,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2143304248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2143304246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93518cf390e3b104fac9397738bbab82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyDieCountText: {fileID: 1903497648}
+  playerData: {fileID: 11400000, guid: 46d3c12f9b592af44bf7af3ff3e3d527, type: 2}
+  enemyParent: {fileID: 2143304246}
 --- !u!4 &99390560496794083
 Transform:
   m_ObjectHideFlags: 0
@@ -1743,7 +1804,6 @@ GameObject:
   - component: {fileID: 6668885536514710448}
   - component: {fileID: 6100069528469107034}
   - component: {fileID: 6502172060286074155}
-  - component: {fileID: 6756720319846812888}
   m_Layer: 5
   m_Name: KOBraver
   m_TagString: Untagged
@@ -1948,19 +2008,6 @@ RectTransform:
   m_AnchoredPosition: {x: 605.14, y: -426}
   m_SizeDelta: {x: -1255.1353, y: -932.83997}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6756720319846812888
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 414205593769033661}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8f2f813f6df786459d06428ae575497, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Textflame: {fileID: 1903497648}
 --- !u!1 &7106447827023565198
 GameObject:
   m_ObjectHideFlags: 0
