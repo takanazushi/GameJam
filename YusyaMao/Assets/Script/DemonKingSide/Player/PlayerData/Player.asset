@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 070b62398eb1b944cb21f49ffee8e95d, type: 3}
   m_Name: Player
   m_EditorClassIdentifier: 
-  attackPower: 13
-  attackRange: 4
-  canUseSKill: 0
+  attackPower: 1
+  attackRange: 1
+  canUseSKill: 1
   maxEnemyCount: 20

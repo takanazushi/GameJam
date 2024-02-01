@@ -12,7 +12,7 @@ public class KeyText : MonoBehaviour
     private int point;
     private float size;
 
-    private int dam_sort = 100;
+    private int dam_sort = 1;
     private int SORT_MAX = 30000;
 
     private bool display;

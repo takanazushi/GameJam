@@ -42,23 +42,17 @@ public class EnemyDamage : MonoBehaviour
         {
             HP = enemyData.MaxHP;
             keyName = enemyData.KeyNames[UnityEngine.Random.Range(0, enemyData.KeyNames.Length)];
-            //Debug.Log(enemyData.name + "HP：" + HP);
             Debug.Log(enemyData.name + "キー：" + keyName);
         }
 
         if (playerData == null)
         {
-           // Debug.LogError("プレイヤーのデータ入れてませんよ(>_<)");
-        }
-        else
-        {
-            //Debug.Log("プレイヤーの攻撃力：" + playerData.ArrackPower);
+           Debug.LogError("プレイヤーのデータ入れてませんよ(>_<)");
         }
 
         if (AttackRange == null)
         {
             AttackRange = GameObject.Find("Cursor");
-            //Debug.LogError("攻撃範囲のところに何も入ってません(>_<)");
         }
 
         if (AttackRange != null)
@@ -73,7 +67,7 @@ public class EnemyDamage : MonoBehaviour
         KeyCodeGet();
 
         //マウスが敵の上にあって、クリックされたときにHPを減らす
-        if (mouseFollow.HitEnemy)
+        if (mouseFollow.HitEnemy&&mouseFollow.GetEnemyList.Contains(this.gameObject))
         {
             if (keyName == "Click")
             {
@@ -82,7 +76,6 @@ public class EnemyDamage : MonoBehaviour
                     HP -= playerData.ArrackPower;
                     number_Test.Init(playerData.ArrackPower,1);
                     number_Test.DestroyObject(0.5f);
-                   // Debug.Log(enemyData.name + "HP：" + HP);
                 }
             }
             else
@@ -91,11 +84,9 @@ public class EnemyDamage : MonoBehaviour
 
                 if (Input.GetKeyDown(keyCode))
                 {
-                   // Debug.Log(keyCode + "押した");
                     HP -= playerData.ArrackPower;
                     number_Test.Init(playerData.ArrackPower, 1);
                     number_Test.DestroyObject(1.0f);
-                    // Debug.Log(enemyData.name + "HP：" + HP);
                 }
             }
         }
