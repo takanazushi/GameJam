@@ -7,6 +7,12 @@ public class EnemyMove : MonoBehaviour
     [SerializeField, Header("移動速度")]
     private float speed = 1.0f;
 
+    [SerializeField, Header("敵データ")]
+    private EnemyData enemyData;
+
+    [SerializeField,Header("プレイヤーデータ")]
+    private PlayerData playerData;
+
     private Animator animator;
 
     // Start is called before the first frame update

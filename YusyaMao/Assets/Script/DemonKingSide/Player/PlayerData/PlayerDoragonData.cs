@@ -15,6 +15,9 @@ public class PlayerDoragonData : ScriptableObject
     [SerializeField]
     private int maxEnemyCount;
 
+    [SerializeField]
+    private int playerHP;
+
     private bool clearflag = false;
 
     public int ArrackPower 
@@ -44,5 +47,10 @@ public class PlayerDoragonData : ScriptableObject
     public int MaxEnemyCount
     {
         get { return maxEnemyCount; }
+    }
+
+    public int PlayerHP
+    {
+        get { return playerHP; }
     }
 }
