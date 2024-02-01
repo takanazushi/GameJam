@@ -15,6 +15,11 @@ public class TitleButton : MonoBehaviour
         SceneManager.LoadScene("HeroGame");
     }
 
+    public void BackTitle()
+    {
+        SceneManager.LoadScene("Title");
+    }
+
     public void EndGame()
     {
         #if UNITY_EDITOR
