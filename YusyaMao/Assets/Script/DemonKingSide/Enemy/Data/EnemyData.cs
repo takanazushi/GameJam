@@ -10,6 +10,9 @@ public class EnemyData : ScriptableObject
     private int maxHP;
 
     [SerializeField]
+    private int minHP;
+
+    [SerializeField]
     private string[] keyNames;
 
     [SerializeField]
@@ -18,6 +21,8 @@ public class EnemyData : ScriptableObject
     private string key;
 
     public int MaxHP { get { return maxHP; } }
+
+    public int MinHP { get { return minHP; } }
 
     public string[] KeyNames {  get { return keyNames; } }
 

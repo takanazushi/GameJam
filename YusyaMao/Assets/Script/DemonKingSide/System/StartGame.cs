@@ -25,12 +25,15 @@ public class StartGame : MonoBehaviour
     //Scene‚ª“Ç‚İ‚Ü‚ê‚é“x‚ÉŒÄ‚Ño‚µ
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if(SceneManager.GetActiveScene().name== "DragonGameScene")
+        if(SceneManager.GetActiveScene().name== "DemonSide")
         {
             playerData.AttackRange = 1;
             playerData.ArrackPower = 1;
             playerData.CanUseSKill = true;
             playerData.ClearFlag = false;
+            playerData.GameOverFlag = false;
+            playerData.PlayerHP = 50;
+            playerData.EnemyDieCount = 0;
         }
 
     }

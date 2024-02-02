@@ -24,12 +24,17 @@ public class FellowKey : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (fellowDamage.KeyName != null && flag)
+        if (GameManager.Instance.IsGetTime_flg)
         {
-            KeyTextNumber();
-            keyTextManager.TextInit(keyNumber);
-            flag = false;
+            if (fellowDamage.KeyName != null && flag)
+            {
+                KeyTextNumber();
+                keyTextManager.TextInit(keyNumber);
+                flag = false;
+            }
         }
+
+        
     }
 
     private void KeyTextNumber()

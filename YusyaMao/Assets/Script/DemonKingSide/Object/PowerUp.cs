@@ -28,7 +28,7 @@ public class PowerUp : MonoBehaviour
 
     private void Update()
     {
-        if (isMoving)
+        if (isMoving&&GameManager.Instance.IsGetTime_flg)
         {
             Vector3 direction = (Player.transform.position - transform.position).normalized;
             transform.position += direction * Speed * Time.deltaTime;

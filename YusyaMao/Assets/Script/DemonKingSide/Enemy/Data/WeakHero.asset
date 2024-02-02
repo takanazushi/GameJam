@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: WeakHero
   m_EditorClassIdentifier: 
   enemyName: WeakHero
-  maxHP: 10
+  maxHP: 1
+  minHP: 1
   keyNames:
   - A
   - S
+  attackPower: 1

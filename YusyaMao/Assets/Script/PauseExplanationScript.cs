@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -8,7 +9,7 @@ using UnityEngine.UI;
 public class PauseExplanationScript : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 {
     [Header("代入先テキストボックス")]
-    public Text TextField;
+    public TextMeshProUGUI TextField;
 
     [SerializeField, Space, Header("表示文章")]
     private string Text;

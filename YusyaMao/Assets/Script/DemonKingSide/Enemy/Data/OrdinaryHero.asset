@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: OrdinaryHero
   maxHP: 10
+  minHP: 5
   keyNames:
   - Q
   - Click
+  - P
+  - X
+  attackPower: 2

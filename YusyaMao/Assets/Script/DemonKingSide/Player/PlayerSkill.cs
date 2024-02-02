@@ -10,6 +10,37 @@ public class PlayerSkill : MonoBehaviour
     [SerializeField, Header("メインCamera")]
     private Camera mainCamera;
 
+    [SerializeField]
+    private GameObject SKillEffect;
+
+    [SerializeField]
+    private AudioClip SkillSE;
+
+    private AudioSource audioSource;
+
+    private Animator animator;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+        animator = GetComponent<Animator>();
+    }
+
+    private void Update()
+    {
+        if (playerData.PlayerHP <= 0)
+        {
+            animator.SetBool("Is_Down", true);
+           
+        }
+    }
+
+    void  DownEnd()
+    {
+        playerData.GameOverFlag = true;
+        GameManager.Instance.IsGetTime_flg = false;
+    }
+
     public void UseSkill()
     {
         if (!playerData.CanUseSKill)
@@ -17,7 +48,13 @@ public class PlayerSkill : MonoBehaviour
             return;
         }
 
-        foreach(GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+        if (SKillEffect.activeSelf == false)
+        {
+            SKillEffect.SetActive(true);
+            audioSource.PlayOneShot(SkillSE);
+        }
+
+        foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
         {
             // エネミーの位置をビューポート座標に変換
             Vector3 viewportPosition = mainCamera.WorldToViewportPoint(enemy.transform.position);

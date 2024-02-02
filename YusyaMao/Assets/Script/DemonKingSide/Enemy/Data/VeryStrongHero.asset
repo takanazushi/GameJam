@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: VeryStrongHero
   maxHP: 100
+  minHP: 50
   keyNames:
   - G
   - H
   - P
+  attackPower: 4

@@ -10,10 +10,14 @@ public class FellowMove : MonoBehaviour
     [SerializeField, Header("É|Å[ÉVÉáÉì")]
     private GameObject portion;
 
+
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(-fellowData.Speed * Time.deltaTime, 0, 0);
+        if (GameManager.Instance.IsGetTime_flg)
+        {
+            transform.Translate(-fellowData.Speed * Time.deltaTime, 0, 0);
+        }
     }
 
     private void OnBecameInvisible()
