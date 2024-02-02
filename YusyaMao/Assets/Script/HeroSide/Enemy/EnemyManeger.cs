@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using static Enemy_Mini;
 
@@ -8,6 +5,18 @@ public class EnemyManeger : MonoBehaviour
 {
     [SerializeField]
     Hero playerData;
+
+    /// <summary>
+    /// 敵のアニメーション
+    /// </summary>
+    [SerializeField]
+    RuntimeAnimatorController AnimeCon_Green;
+    [SerializeField]
+    RuntimeAnimatorController AnimeCon_Blue;
+    [SerializeField]
+    RuntimeAnimatorController AnimeCon_Pueple;
+    [SerializeField]
+    RuntimeAnimatorController AnimeCon_Red;
 
     /// <summary>
     /// 敵のHP初期値
@@ -80,7 +89,7 @@ public class EnemyManeger : MonoBehaviour
 
     private void Start()
     {
-        int enemypool_conut=transform.childCount;
+        int enemypool_conut = transform.childCount;
         Enemy_pool = new Enemy_Mini[enemypool_conut];
 
         for (int i = 0; i < enemypool_conut; i++)
@@ -88,7 +97,7 @@ public class EnemyManeger : MonoBehaviour
             //敵スクリプトを取得
             Enemy_pool[i] = transform.GetChild(i).GetComponent<Enemy_Mini>();
         }
-        exeTime = GameManager.Instance.GetTime_limit- ExeCoolTime;
+        exeTime = GameManager.Instance.GetTime_limit - ExeCoolTime;
         EnemyBossflg = false;
         KnockOutCount = 0;
     }
@@ -100,13 +109,13 @@ public class EnemyManeger : MonoBehaviour
         if (Enemy_Generatorflg && GameManager.Instance.GetGameOperationFlg)
         {
             //時間計測
-            if(GameManager.Instance.GetTime_limit < exeTime)
+            if (GameManager.Instance.GetTime_limit < exeTime)
             {
                 //実行時間再設定
                 exeTime = GameManager.Instance.GetTime_limit - ExeCoolTime;
 
                 //回数分実行
-                for (int i = 0; i < exe_num;i++)
+                for (int i = 0; i < exe_num; i++)
                 {
                     Enemy_Generator();
                 }
@@ -114,7 +123,7 @@ public class EnemyManeger : MonoBehaviour
         }
 
         //ボス出現時間判定
-        if (!EnemyBossflg&&GameManager.Instance.GetTime_limit < EnemyBoss_Time)
+        if (!EnemyBossflg && GameManager.Instance.GetTime_limit < EnemyBoss_Time)
         {
             EnemyBoss_Generator();
         }
@@ -149,7 +158,8 @@ public class EnemyManeger : MonoBehaviour
                 //ランダムでタイプを変更
                 Enemy_Type enemy_Type = Enemy_Type.Type1;
                 float enemy_hp = Enemy_HP;
-                switch (Random.Range(0, 4)) 
+                RuntimeAnimatorController animatorController = AnimeCon_Green;
+                switch (Random.Range(0, 4))
                 {
                     case 0:
                         enemy_Type = Enemy_Type.Type1;
@@ -158,30 +168,65 @@ public class EnemyManeger : MonoBehaviour
                         break;
                     case 1:
                         enemy_Type = Enemy_Type.Type2;
-
+                        animatorController = AnimeCon_Blue;
                         break;
                     case 2:
                         enemy_Type = Enemy_Type.Type3;
                         //todo敵のHPを設定
                         enemy_hp *= 1.3f;
+                        animatorController = AnimeCon_Pueple;
                         break;
                     case 3:
                         enemy_Type = Enemy_Type.Type4;
                         //todo敵のHPを設定
                         enemy_hp *= 1.8f;
+                        animatorController = AnimeCon_Red;
                         break;
                 }
 
 
-                enemy.SetStart(Enemy_Count, enemy_hp, enemy_Type);
+                enemy.SetStart(Enemy_Count, enemy_hp, enemy_Type, animatorController);
 
                 Enemy_Count++;
                 break;
-            
+
 
 
             }
         }
+
+    }
+
+    public void Enemy_AllDamage(float damage)
+    {
+        foreach (var enemy in Enemy_pool)
+        {
+            if (enemy.gameObject.activeSelf && enemy.Damage(damage))
+            {
+                //敵を倒した場合
+                KnockOutCount++;
+
+                //playerの攻撃力を更新
+                playerData.PowerUpdate(playerData.GetAttackPower * 0.5f);
+            }
+        }
+
+        if (Enemy_Boss.gameObject.activeSelf && Enemy_Boss.Damage(damage))
+        {
+            GameManager.Instance.IsGetTime_flg = false;
+            GameManager.Instance.GetGameOperationFlg = false;
+            Debug.Log("倒した");
+
+            foreach (var enemy in Enemy_pool)
+            {
+                if (enemy.gameObject.activeSelf)
+                {
+                    enemy.SetMoveType(Enemy_MoveType.RunAway, 3, false);
+                }
+            }
+
+        }
+
 
     }
 
@@ -209,7 +254,7 @@ public class EnemyManeger : MonoBehaviour
             }
         }
 
-        if (Enemy_Boss.transform== tra)
+        if (Enemy_Boss.transform == tra)
         {
             if (Enemy_Boss.Damage(damage))
             {
@@ -219,7 +264,7 @@ public class EnemyManeger : MonoBehaviour
 
                 foreach (var enemy in Enemy_pool)
                 {
-                    if(enemy.gameObject.activeSelf) 
+                    if (enemy.gameObject.activeSelf)
                     {
                         enemy.SetMoveType(Enemy_MoveType.RunAway, 3, false);
                     }
@@ -229,7 +274,7 @@ public class EnemyManeger : MonoBehaviour
             return;
         }
 
-        
+
 
     }
 
@@ -239,14 +284,14 @@ public class EnemyManeger : MonoBehaviour
     /// <param name="damage">与えるダメージ</param>
     public void EnemyDamage(float damage)
     {
-        Enemy_Mini hitenemy=null;
-        int enemyno =1000;
+        Enemy_Mini hitenemy = null;
+        int enemyno = 1000;
         //番号が小さいやつを取得
         foreach (var enemy in Enemy_pool)
         {
             if (enemy.gameObject.activeSelf)
             {
-                if(enemyno>= enemy.GetEnemy_No)
+                if (enemyno >= enemy.GetEnemy_No)
                 {
                     enemyno = enemy.GetEnemy_No;
                     hitenemy = enemy;
@@ -264,7 +309,7 @@ public class EnemyManeger : MonoBehaviour
                 KnockOutCount++;
 
                 //playerの攻撃力を更新
-                playerData.PowerUpdate(playerData.GetAttackPower*0.5f);
+                playerData.PowerUpdate(playerData.GetAttackPower * 0.5f);
             }
         }
         //ボスに攻撃するか
@@ -301,7 +346,7 @@ public class EnemyManeger : MonoBehaviour
 
 
         //ボス判定
-        if (listSearch==null)
+        if (listSearch == null)
         {
             if (Enemy_Boss.gameObject.activeSelf)
             {
@@ -309,7 +354,7 @@ public class EnemyManeger : MonoBehaviour
             }
         }
 
-        if(listSearch == null)
+        if (listSearch == null)
         {
             return pos;
 

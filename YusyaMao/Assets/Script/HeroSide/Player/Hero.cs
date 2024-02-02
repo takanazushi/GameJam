@@ -26,8 +26,21 @@ public class Hero : MonoBehaviour
     [SerializeField]
     float Hp;
 
+    /// <summary>
+    /// HPテキスト
+    /// </summary>
     [SerializeField]
     TextMeshProUGUI textmeshPro;
+
+    Animator animator;
+
+    [SerializeField]
+    GameObject effect_Parent;
+
+    /// <summary>
+    /// エフェクトプール
+    /// </summary>
+    GameObject[] Effectpool;
 
     public float GetAttackPower
     {
@@ -46,7 +59,19 @@ public class Hero : MonoBehaviour
 
         }
 
+
+        int effect_pool_conut = effect_Parent.transform.childCount;
+        Effectpool = new GameObject[effect_pool_conut];
+
+        for (int i = 0; i < effect_pool_conut; i++)
+        {
+            //スクリプトを取得
+            Effectpool[i] = effect_Parent.transform.GetChild(i).gameObject;
+        }
+
         textmeshPro.text = Hp.ToString() + ":HP";
+
+        animator=GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -64,7 +89,20 @@ public class Hero : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Enemy"))
                 {
+
+                    
                     EnemyManeger.EnemyDamage(hit.transform, AttackPower);
+
+
+                    foreach (var effect in Effectpool)
+                    {
+                        if (!effect.activeSelf)
+                        {
+                            effect.transform.position = hit.transform.position;
+                            effect.SetActive(true);
+                            break;
+                        }
+                    }
 
                     //武器モーション開始
                     foreach (var weapon in weapon_pool)
@@ -77,48 +115,27 @@ public class Hero : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 攻撃が実行できるか判定
-    /// </summary>
-    /// <returns></returns>
-    bool IsAttack()
-    {
-        bool flg = false;
-
-        if (Input.GetMouseButtonDown(0) &&
-            GameManager.Instance.GetGameOperationFlg &&
-            GameManager.Instance.IsGetTime_flg)
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
-
-            if (hit)
-            {
-                if (hit.collider.CompareTag("Enemy"))
-                {
-                    flg = true;
-                }
-            }
-
-        }
-
-        return flg;
-    }
-
     public void PowerUpdate(float addpower)
     {
         AttackPower += addpower;
+        Debug.Log(AttackPower);
     }
 
     public void Damage(float damgae)
     {
         Hp -= damgae;
-
+        animator.SetBool("Is_Damage", true);
         if (Hp <= 0)
         {
             Hp = 0;
         }
 
         textmeshPro.text = Hp.ToString() + ":HP";
+    }
+
+    void AnimeDamageEnd()
+    {
+        animator.SetBool("Is_Damage", false);
+
     }
 }

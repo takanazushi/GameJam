@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -26,6 +27,9 @@ public class EnemyBoss : MonoBehaviour
     [SerializeField]
     Hero playerData;
 
+    [SerializeField]
+    float AttackDamage;
+
     /// <summary>
     /// 攻撃クールタイム秒
     /// </summary>
@@ -34,11 +38,31 @@ public class EnemyBoss : MonoBehaviour
 
     float Attack_TimeCount;
 
+    [SerializeField]
+    GameObject effect_Parent;
+
+    /// <summary>
+    /// エフェクトプール
+    /// </summary>
+    GameObject[] Effectpool;
+
 
     void Start()
     {
         StartMoveflg = true;
         anim = GetComponent<Animator>();
+
+
+        int effect_pool_conut = effect_Parent.transform.childCount;
+        Effectpool = new GameObject[effect_pool_conut];
+
+        for (int i = 0; i < effect_pool_conut; i++)
+        {
+            //スクリプトを取得
+            Effectpool[i] = effect_Parent.transform.GetChild(i).gameObject;
+        }
+
+
     }
 
     // Update is called once per frame
@@ -75,7 +99,7 @@ public class EnemyBoss : MonoBehaviour
 
             if (Attack_TimeCount >= Attack_Time)
             {
-                Debug.Log("攻撃開始");
+
                 anim.SetBool("Attack", true);
                 Attack_TimeCount = 0.0f;
             }
@@ -90,6 +114,8 @@ public class EnemyBoss : MonoBehaviour
     /// </summary>
     public void AnimaStart()
     {
+        if(!gameObject.activeSelf) { return; }
+
         anim.SetFloat("MoveSpeed", 1.0f);
     }
     /// <summary>
@@ -97,6 +123,7 @@ public class EnemyBoss : MonoBehaviour
     /// </summary>
     public void AnimaStop()
     {
+        if (!gameObject.activeSelf) { return; }
         anim.SetFloat("MoveSpeed", 0.0f);
     }
 
@@ -105,8 +132,17 @@ public class EnemyBoss : MonoBehaviour
     /// </summary>
     public void AttackEnd()
     {
+        foreach (var effect in Effectpool)
+        {
+            if (!effect.activeSelf)
+            {
+                effect.transform.position = playerData.transform.position;
+                effect.SetActive(true);
+                break;
+            }
+        }
 
-        playerData.Damage(50);
+        playerData.Damage(AttackDamage);
         anim.SetBool("Attack", false);
 
     }
@@ -139,11 +175,16 @@ public class EnemyBoss : MonoBehaviour
         if (HP <= 0)
         {
             anim.SetBool("Is_Down", true);
+            
 
             return true;
 
         }
-        anim.SetBool("Is_ReceiveDamage", true);
+
+        if (!anim.GetBool("Is_ReceiveDamage"))
+        {
+            anim.SetBool("Is_ReceiveDamage", true);
+        }
 
         return false;
     }

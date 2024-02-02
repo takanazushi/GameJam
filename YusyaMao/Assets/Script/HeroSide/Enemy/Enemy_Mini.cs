@@ -100,6 +100,18 @@ public class Enemy_Mini : MonoBehaviour
     //à⁄ìÆå„à íu
     private Vector2 MovePosition;
 
+
+    SpriteRenderer spriteRenderer;
+
+    Animator animator;
+
+    private void Awake()
+    {
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = gameObject.GetComponent<Animator>();
+    }
+
     private void Update()
     {
         // à⁄ìÆ
@@ -235,6 +247,10 @@ public class Enemy_Mini : MonoBehaviour
     public bool Damage(float damage)
     {
         HP -= damage;
+        if (animator != null)
+        {
+            animator.SetBool("Is_Damage1", true);
+        }
 
         if (HP <= 0)
         {
@@ -251,8 +267,10 @@ public class Enemy_Mini : MonoBehaviour
     /// <param name="no">ê∂ê¨î‘çÜ</param>
     /// <param name="hp">HP</param>
     /// <param name="type">âÊëúéÌóﬁ</param>
-    public void SetStart(int no,float hp, Enemy_Type type)
+    public void SetStart(int no,float hp, Enemy_Type type, RuntimeAnimatorController controller)
     {
+        animator.runtimeAnimatorController = controller;
+
         Enemy_No = no;
         HP = hp;
         StartPosition = new Vector2(-11, Random.Range(1.7f, -3.5f));
@@ -262,22 +280,18 @@ public class Enemy_Mini : MonoBehaviour
         switch (type)
         {
             case Enemy_Type.Type1:
-                GetComponent<SpriteRenderer>().sprite = Enemy1;
+                spriteRenderer.sprite = Enemy1;
                 break;
             case Enemy_Type.Type2:
-                GetComponent<SpriteRenderer>().sprite = Enemy2;
+                spriteRenderer.sprite = Enemy2;
                 break;
             case Enemy_Type.Type3:
-                GetComponent<SpriteRenderer>().sprite = Enemy3;
+                spriteRenderer.sprite = Enemy3;
                 break;
             case Enemy_Type.Type4:
-                GetComponent<SpriteRenderer>().sprite = Enemy4;
+                spriteRenderer.sprite = Enemy4;
                 break;
         }
-
-        //    pos = StartPosition;
-        //    Type = EnemyType;
-        //    EnemyPower = Power;
     }
 
 }
