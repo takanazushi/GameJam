@@ -65,7 +65,7 @@ public class FellowDamage : MonoBehaviour
         KeyCodeGet();
 
         //マウスが敵の上にあって、クリックされたときにHPを減らす
-        if (mouseFollow.HitFellow)
+        if (mouseFollow.HitFellow&&GameManager.Instance.IsGetTime_flg)
         {
             if (keyName == "Click")
             {

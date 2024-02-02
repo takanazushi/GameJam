@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnemyDamage : MonoBehaviour
@@ -14,8 +15,20 @@ public class EnemyDamage : MonoBehaviour
     [SerializeField,Header("ダメージ表記マネージャ")]
     private Number_test number_Test;
 
+    private Animator animator;
+
+    [SerializeField]
+    GameObject damageEffect;
+
+    [SerializeField]
+    private AudioClip damageSE;
+
+    private int StartHP;
+
     private int HP;
     private string keyName;
+
+    private AudioSource audioSource;
 
     public string KeyName
     {
@@ -27,9 +40,16 @@ public class EnemyDamage : MonoBehaviour
         get { return HP; }
     }
 
+    public int GetStartHP
+    {
+        get { return StartHP; }
+    }
+
     private KeyCode keyCode;
 
     private MouseFollow mouseFollow;
+
+    private int previousHP;
 
     // Start is called before the first frame update
     void Start()
@@ -40,7 +60,7 @@ public class EnemyDamage : MonoBehaviour
         }
         else
         {
-            HP = enemyData.MaxHP;
+            HP = UnityEngine.Random.Range(enemyData.MinHP, enemyData.MaxHP);
             keyName = enemyData.KeyNames[UnityEngine.Random.Range(0, enemyData.KeyNames.Length)];
             Debug.Log(enemyData.name + "キー：" + keyName);
         }
@@ -59,6 +79,14 @@ public class EnemyDamage : MonoBehaviour
         {
             mouseFollow = AttackRange.GetComponent<MouseFollow>();
         }
+
+        animator=GetComponent<Animator>();
+
+        previousHP = HP;
+
+        StartHP = HP;
+
+        audioSource=GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -67,18 +95,18 @@ public class EnemyDamage : MonoBehaviour
         KeyCodeGet();
 
         //マウスが敵の上にあって、クリックされたときにHPを減らす
-        if (mouseFollow.HitEnemy&&mouseFollow.GetEnemyList.Contains(this.gameObject))
+        if (mouseFollow.HitEnemy && mouseFollow.GetEnemyList.Contains(this.gameObject) && GameManager.Instance.IsGetTime_flg) 
         {
             if (keyName == "Click")
             {
                 if (Input.GetMouseButtonDown(0))
                 {
                     HP -= playerData.ArrackPower;
-                    number_Test.Init(playerData.ArrackPower,1);
+                    number_Test.Init(playerData.ArrackPower, 1);
                     number_Test.DestroyObject(0.5f);
                 }
             }
-            else
+            else if (keyName != "Click")
             {
                 Debug.Log("KeyCode" + keyCode);
 
@@ -87,15 +115,37 @@ public class EnemyDamage : MonoBehaviour
                     HP -= playerData.ArrackPower;
                     number_Test.Init(playerData.ArrackPower, 1);
                     number_Test.DestroyObject(1.0f);
+                    
                 }
             }
         }
-       
+
+        if (HP < previousHP)
+        {
+            if (damageEffect.activeSelf==false)
+            {
+                damageEffect.SetActive(true);
+                audioSource.PlayOneShot(damageSE);
+                animator.SetBool("Is_Damage", true);
+            }
+
+            Debug.Log("HPが減りました！");
+           
+        }
+        else
+        {
+            animator.SetBool("Is_Damage", false);
+        }
+
+        // 現在のHPを保存
+        previousHP = HP;
+
 
         if (HP <= 0)
         {
+            StartCoroutine(PlayerDieAnimarion());
             Debug.Log("勇者倒したったで！！！！");
-            gameObject.SetActive(false);
+           
         }
     }
 
@@ -112,5 +162,16 @@ public class EnemyDamage : MonoBehaviour
        
     }
 
-    
+    IEnumerator PlayerDieAnimarion()
+    {
+        animator.SetBool("Is_Damage", false);
+        animator.SetBool("Is_Down", true);
+
+        yield return new WaitForSeconds(1.8f);
+
+        gameObject.SetActive(false);
+    }
+
 }
+
+

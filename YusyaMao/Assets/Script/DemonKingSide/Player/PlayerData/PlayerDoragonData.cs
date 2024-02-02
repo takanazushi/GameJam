@@ -13,12 +13,17 @@ public class PlayerDoragonData : ScriptableObject
     private bool canUseSKill = true;
 
     [SerializeField]
-    private int maxEnemyCount;
-
-    [SerializeField]
     private int playerHP;
 
+    [SerializeField]
+    private int enemyDieCount;
+
     private bool clearflag = false;
+
+    private bool gameOverFlag = false;
+
+    [SerializeField]
+    private int maxEnemyCount;
 
     public int ArrackPower 
     {   get { return attackPower; }
@@ -44,6 +49,12 @@ public class PlayerDoragonData : ScriptableObject
         set { clearflag = value; }
     }
 
+    public bool GameOverFlag
+    {
+        get { return gameOverFlag; }
+        set { gameOverFlag = value; }
+    }
+
     public int MaxEnemyCount
     {
         get { return maxEnemyCount; }
@@ -52,5 +63,12 @@ public class PlayerDoragonData : ScriptableObject
     public int PlayerHP
     {
         get { return playerHP; }
+        set { playerHP= value; }
+    }
+
+    public int EnemyDieCount
+    {
+        get { return enemyDieCount; }
+        set { enemyDieCount = value; }
     }
 }

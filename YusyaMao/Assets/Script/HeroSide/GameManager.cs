@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -82,6 +83,36 @@ public class GameManager : MonoBehaviour
     /// </summary>
     [SerializeField]
     GameObject ResultUI;
+
+    //Sceneが有効になった時
+    private void OnEnable()
+    {
+        //自動的にMethod呼び出し
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    //Sceneが無効になった時
+    private void OnDisable()
+    {
+        //自動的にMethod削除
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    //Sceneが読み込まれる度に呼び出し
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        GameOperationFlg = true;
+        Time_limit_Start = 90;
+        Time_limit = Time_limit_Start;
+        Resultflg = false;
+        IsGetTime_flg = true;
+        if (ResultUI == null)
+        {
+            ResultUI = GameObject.Find("PauseBack");
+        }
+
+
+    }
 
     private void Awake()
     {

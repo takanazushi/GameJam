@@ -37,6 +37,8 @@ public class DieCount : MonoBehaviour
             }
         }
 
+        playerData.EnemyDieCount = deadEnemyCount;
+
         // €‚ñ‚¾“G‚Ì”‚ğ•\¦
         enemyDieCountText.text = "‚Ì‚±‚è " + (playerData.MaxEnemyCount - deadEnemyCount)+"‚É‚ñ";
 
@@ -44,6 +46,7 @@ public class DieCount : MonoBehaviour
         if (playerData.MaxEnemyCount - deadEnemyCount == 0)
         {
             playerData.ClearFlag = true;
+            GameManager.Instance.IsGetTime_flg = false;
         }
     }
 }

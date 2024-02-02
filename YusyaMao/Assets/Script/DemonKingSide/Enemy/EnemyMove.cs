@@ -24,7 +24,10 @@ public class EnemyMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(-speed * Time.deltaTime, 0, 0);
+        if (GameManager.Instance.IsGetTime_flg)
+        {
+            transform.Translate(-speed * Time.deltaTime, 0, 0);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -35,6 +38,24 @@ public class EnemyMove : MonoBehaviour
         {
             speed = 0;
             Debug.Log("‘Ø—¯");
+
+            StartCoroutine(DealDamageOverTime(5f));
         }
     }
+
+    private IEnumerator DealDamageOverTime(float interval)
+    {
+        while (true)
+        {
+            if (!GameManager.Instance.IsGetTime_flg)
+            {
+                yield return null;
+                continue;
+            }
+
+            playerData.PlayerHP -= 1;
+            yield return new WaitForSeconds(interval);
+        }
+    }
+
 }

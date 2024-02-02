@@ -10,7 +10,7 @@ public class Number_test : MonoBehaviour
     private int point;
     private float size;
 
-    private int dam_sort = 100;
+    private int dam_sort = 5;
     private int SORT_MAX = 30000;
 
     private bool display;

@@ -13,7 +13,7 @@ public class FellowGenerator : MonoBehaviour
     [SerializeField]
     private PlayerDoragonData playerData;
 
-    private int maxCount = 10;
+    private int maxCount = 30;
     private float minGenerateInterval = 1.0f;
     private float maxGenerateInterval = 3.0f;
 
@@ -28,6 +28,12 @@ public class FellowGenerator : MonoBehaviour
         while (true)
         {
             if (fellowParent.transform.childCount >= maxCount)
+            {
+                yield return null;
+                continue;
+            }
+
+            if (!GameManager.Instance.IsGetTime_flg)
             {
                 yield return null;
                 continue;

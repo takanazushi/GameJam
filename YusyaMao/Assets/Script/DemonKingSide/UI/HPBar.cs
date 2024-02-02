@@ -29,9 +29,9 @@ public class HPBar : MonoBehaviour
     void Update()
     {
         // ©g‚ÌŒü‚«‚ğƒJƒƒ‰‚ÉŒü‚¯‚é
-        myRectTfm.LookAt(Camera.main.transform);
+        //myRectTfm.LookAt(Camera.main.transform);
 
-        fillAmount =(float)damage.GetHP / enemyData.MaxHP;
+        fillAmount =(float)damage.GetHP / damage.GetStartHP;
 
         image.fillAmount = fillAmount;
     }

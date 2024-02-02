@@ -24,28 +24,17 @@ public class EnemyGenerator : MonoBehaviour
         geterateEnemy = StartCoroutine(GenerateEnemy());
     }
 
-    private void Update()
-    {
-        //if (Input.GetKeyDown(KeyCode.P))
-        //{
-        //    if (isPaused)
-        //    {
-        //        isPaused = false;
-        //        geterateEnemy = StartCoroutine(GenerateEnemy());
-        //    }
-        //    else
-        //    {
-        //        isPaused = true;
-        //        StopCoroutine(geterateEnemy);
-        //    }
-        //}
-    }
-
     IEnumerator GenerateEnemy()
     {
         while (true)
         {
             if (enemyParent.transform.childCount >= maxCount)
+            {
+                yield return null;
+                continue;
+            }
+
+            if (!GameManager.Instance.IsGetTime_flg)
             {
                 yield return null;
                 continue;

@@ -23,13 +23,13 @@ public class SkillUI : MonoBehaviour, IPointerClickHandler
     // Update is called once per frame
     void Update()
     {
-        if (playerData.CanUseSKill)
+        if (!playerData.CanUseSKill)
         {
-            image.color = Color.red;
+            image.color = Color.gray;
         }
         else
         {
-            image.color = Color.black;
+            image.color = Color.white;
         }
     }
 
